@@ -20,11 +20,11 @@ Do not use this repository to edit implementation source code.
 
 Agents must start here:
 
-1. [docs/agents/entrypoint.md](docs/agents/entrypoint.md)
-2. [docs/index.md](docs/index.md)
-3. [docs/architecture/context.md](docs/architecture/context.md)
-4. [docs/contracts/index.md](docs/contracts/index.md)
-5. [docs/adr/index.md](docs/adr/index.md)
+1. [000-SYSTEM-CONTEXT.md](000-SYSTEM-CONTEXT.md)
+2. [100-ARCHITECTURE.md](100-ARCHITECTURE.md)
+3. [300-CONTRACTS.md](300-CONTRACTS.md)
+4. [200-OPERATIONS.md](200-OPERATIONS.md)
+5. [decisions/](decisions/)
 
 ## Repository Rules
 
@@ -35,17 +35,20 @@ Agents must start here:
 - Prefer contracts over implementation details.
 - Prefer explicit documentation over assumptions.
 - Ask for missing architectural decisions instead of inventing behavior.
-- Use `PLANS.md` before multi-file or ambiguous changes.
+- Explain a short plan before multi-file or ambiguous changes.
 - Validate changed documentation before claiming completion.
 
 ## Documentation Ownership
 
 `victus-docs` owns:
 
-- `docs/architecture/`
+- `000-SYSTEM-CONTEXT.md`
+- `100-ARCHITECTURE.md`
+- `200-OPERATIONS.md`
+- `300-CONTRACTS.md`
+- `decisions/`
 - `docs/contracts/`
 - `docs/adr/`
-- `docs/agents/`
 
 Synchronized repository documentation lives under:
 
@@ -61,8 +64,13 @@ These synchronized directories are context mirrors, not source-of-truth editing 
 |---|---|
 | [README.md](README.md) | Human-facing repository overview |
 | [AGENTS.md](AGENTS.md) | Agent-facing rules and navigation |
-| [PLANS.md](PLANS.md) | Plans for larger or ambiguous tasks |
-| [docs/](docs/) | Canonical documentation |
+| [000-SYSTEM-CONTEXT.md](000-SYSTEM-CONTEXT.md) | System context and documentation convention |
+| [100-ARCHITECTURE.md](100-ARCHITECTURE.md) | Architecture Map of Content |
+| [200-OPERATIONS.md](200-OPERATIONS.md) | Operations Map of Content |
+| [300-CONTRACTS.md](300-CONTRACTS.md) | Contracts Map of Content |
+| [decisions/](decisions/) | Decision hub |
+| [docs/contracts/](docs/contracts/) | Canonical supporting contracts |
+| [docs/adr/](docs/adr/) | Architecture Decision Records |
 | [repos/](repos/) | Read-only synchronized context |
 
 ## Change Policy

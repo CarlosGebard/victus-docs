@@ -8,10 +8,11 @@ It exists to give humans and AI agents one stable place to understand system con
 
 | Reader | First file | Purpose |
 |---|---|---|
-| Human | [docs/index.md](docs/index.md) | Canonical documentation map |
+| Human | [000-SYSTEM-CONTEXT.md](000-SYSTEM-CONTEXT.md) | Canonical documentation convention and system context |
 | AI agent | [AGENTS.md](AGENTS.md) | Repository rules and required reading order |
-| Architecture reviewer | [docs/architecture/context.md](docs/architecture/context.md) | System context and architecture principles |
-| Contract reviewer | [docs/contracts/index.md](docs/contracts/index.md) | Stable cross-repository expectations |
+| Architecture reviewer | [100-ARCHITECTURE.md](100-ARCHITECTURE.md) | Architecture map and system principles |
+| Operations reviewer | [200-OPERATIONS.md](200-OPERATIONS.md) | Documentation operations and validation |
+| Contract reviewer | [300-CONTRACTS.md](300-CONTRACTS.md) | Stable cross-repository expectations |
 
 ## What This Repository Owns
 
@@ -33,12 +34,17 @@ Source changes belong in the owning repository.
 
 ## Documentation Map
 
+Victus documentation uses a hybrid Hub-and-Node convention. Root numbered files are Maps of Content; detailed documents remain in their owning folders.
+
 | Path | Role |
 |---|---|
-| [docs/index.md](docs/index.md) | Main documentation index |
-| [docs/agents/entrypoint.md](docs/agents/entrypoint.md) | AI-agent navigation entrypoint |
-| [docs/architecture/context.md](docs/architecture/context.md) | Victus system context |
-| [docs/contracts/index.md](docs/contracts/index.md) | Contract index |
+| [000-SYSTEM-CONTEXT.md](000-SYSTEM-CONTEXT.md) | System context and documentation convention |
+| [100-ARCHITECTURE.md](100-ARCHITECTURE.md) | Architecture Map of Content |
+| [200-OPERATIONS.md](200-OPERATIONS.md) | Operations Map of Content |
+| [300-CONTRACTS.md](300-CONTRACTS.md) | Contracts Map of Content |
+| [decisions/](decisions/) | Root decision hub |
+| [docs/contracts/artifacts.md](docs/contracts/artifacts.md) | Artifact contract hub |
+| [docs/contracts/repository-documentation-contract.md](docs/contracts/repository-documentation-contract.md) | Repository documentation contract |
 | [docs/adr/index.md](docs/adr/index.md) | Architecture decisions |
 | [repos/](repos/) | Read-only synchronized repository documentation |
 

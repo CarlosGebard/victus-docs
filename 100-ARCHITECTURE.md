@@ -1,0 +1,71 @@
+---
+id: VICTUS-MOC-100-ARCHITECTURE
+title: Victus Architecture
+status: active
+updated_at: 2026-05-27
+owners:
+  - architecture
+audience:
+  - humans
+  - ai-agents
+tags:
+  - moc
+  - architecture
+  - navigation
+---
+
+# 100 - Architecture
+
+This Map of Content routes architecture readers to the current high-trust architecture documents for Victus.
+
+## Architecture Authority
+
+`victus-docs` is the architecture authority for cross-repository system context, boundaries, and governance.
+
+Repository-local implementation architecture belongs in the owning repository.
+
+## Core Architecture Documents
+
+| Document | Purpose |
+|---|---|
+| [System Context](000-SYSTEM-CONTEXT.md) | Ecosystem scope, documentation convention, and repository boundaries |
+| [Artifact Contract Hub](docs/contracts/artifacts.md) | Canonical artifact graph and artifact governance |
+| [AGENTS.md](AGENTS.md) | AI-agent reading order and execution rules |
+
+## Architecture Principles
+
+Victus prioritizes:
+
+- deterministic systems
+- explicit contracts
+- traceable reasoning
+- modular ownership
+- low hidden context
+- reproducible behavior
+
+## Artifact Flow
+
+```txt
+PDF Source
+-> Normalized Paper
+-> Markdown Document
+-> Section Block
+-> Chunk
+-> Claim
+-> Embedding
+-> Retrieval Result
+-> User Answer
+```
+
+The detailed artifact contract lives in [docs/contracts/artifacts.md](docs/contracts/artifacts.md).
+
+## Decision Links
+
+Architecture decisions are indexed from [decisions/](decisions/) and currently stored under [docs/adr/](docs/adr/).
+
+Breaking architecture changes require:
+
+- ADR
+- affected contract update
+- owning repository implementation update
+- migration notes when persisted data or downstream consumers are affected

@@ -9,8 +9,8 @@ audience:
   - humans
   - ai-agents
 related_docs:
-  - ../architecture/context.md
-  - ../contracts/index.md
+  - ../../100-ARCHITECTURE.md
+  - ../../300-CONTRACTS.md
   - ../contracts/artifacts.md
 tags:
   - adr

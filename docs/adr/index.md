@@ -1,8 +1,8 @@
 ---
 id: VICTUS-ADR-INDEX
 title: Victus Architecture Decision Records
-status: draft
-updated_at: 2026-05-26
+status: active
+updated_at: 2026-05-27
 owners:
   - architecture
 audience:
@@ -23,6 +23,7 @@ Architecture Decision Records define decisions that affect system boundaries, co
 | ADR | Status | Title |
 |---|---|---|
 | [VICTUS-ADR-001](VICTUS-ADR-001-documentation-control-plane.md) | accepted | Documentation control plane |
+| [VICTUS-ADR-002](VICTUS-ADR-002-hybrid-hub-and-node-documentation.md) | accepted | Hybrid Hub-and-Node Documentation Convention |
 
 ## Rules
 

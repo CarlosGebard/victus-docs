@@ -1,15 +1,15 @@
 ---
 id: VICTUS-CONTRACT-ARTIFACTS
 title: Victus Artifact Contract Hub
-status: draft
-updated_at: 2026-05-26
+status: active
+updated_at: 2026-05-27
 owners:
   - architecture
 audience:
   - humans
   - ai-agents
 related_docs:
-  - ../architecture/context.md
+  - ../../100-ARCHITECTURE.md
   - ../adr/VICTUS-ADR-001-documentation-control-plane.md
 tags:
   - contracts

@@ -1,8 +1,8 @@
 ---
 id: VICTUS-CONTRACT-REPOSITORY-DOCS
 title: Repository Documentation Contract
-status: draft
-updated_at: 2026-05-26
+status: active
+updated_at: 2026-05-27
 audience:
   - humans
   - ai-agents
@@ -17,8 +17,11 @@ Every Victus repository must be understandable as an independent unit.
 Each repository should include:
 
 - `README.md`
-- `docs/index.md`
-- `docs/agent-entrypoint.md`
+- `000-SYSTEM-CONTEXT.md`
+- `100-ARCHITECTURE.md`
+- `200-OPERATIONS.md`
+- `300-CONTRACTS.md`
+- `decisions/`
 
 Depending on complexity, repositories may also include:
 
@@ -46,8 +49,8 @@ Depending on complexity, repositories may also include:
 Agents should read:
 
 1. `README.md`
-2. `docs/index.md`
-3. `docs/agent-entrypoint.md`
-4. `docs/architecture.md`
-5. `docs/contracts.md`
-6. `docs/operations.md`
+2. `000-SYSTEM-CONTEXT.md`
+3. `100-ARCHITECTURE.md`
+4. `300-CONTRACTS.md`
+5. `200-OPERATIONS.md`
+6. `decisions/`
