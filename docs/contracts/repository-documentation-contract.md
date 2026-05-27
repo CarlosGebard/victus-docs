@@ -2,7 +2,7 @@
 id: VICTUS-CONTRACT-REPOSITORY-DOCS
 title: Repository Documentation Contract
 status: draft
-updated_at: 2026-05-25
+updated_at: 2026-05-26
 audience:
   - humans
   - ai-agents
@@ -18,10 +18,17 @@ Each repository should include:
 
 - `README.md`
 - `docs/index.md`
-- `docs/architecture.md`
-- `docs/contracts.md`
-- `docs/operations.md`
 - `docs/agent-entrypoint.md`
+
+Depending on complexity, repositories may also include:
+
+- `docs/architecture/`
+- `docs/contracts/`
+- `docs/operations/`
+- `docs/adr/`
+- `docs/api/`
+- `docs/pipelines/`
+- `docs/runbooks/`
 
 ## Rules
 

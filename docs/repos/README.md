@@ -1,10 +1,13 @@
-# Repository Mirrors
+# Repository Mirror Policy
 
-This directory contains git subtrees used as read-only context mirrors.
+Synchronized repository documentation lives under the repository root `repos/` directory.
+
+This document defines how those mirrors should be interpreted.
 
 Rules:
 
 - Do not edit source code from this repository.
 - Changes must happen in the original repository.
-- Subtrees exist to provide architecture, documentation, and agent context.
+- Mirrors exist to provide architecture, documentation, and agent context.
+- Treat `repos/**` as read-only synchronized documentation context.
 - `victus-docs` is the canonical documentation control plane.
