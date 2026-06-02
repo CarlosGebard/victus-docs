@@ -1,0 +1,91 @@
+name: Sync Wiki.js
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  sync-wiki:
+    runs-on: ubuntu-latest
+
+    env:
+      TARGET_DIR: .
+      WIKI_BRANCH: wiki-production
+      WIKIJS_GRAPHQL_URL: ${{ secrets.WIKIJS_GRAPHQL_URL }}
+      WIKIJS_API_TOKEN: ${{ secrets.WIKIJS_API_TOKEN }}
+      WIKIJS_IMPORT_TARGET: ${{ secrets.WIKIJS_IMPORT_TARGET }}
+
+    steps:
+      - name: Checkout documentation
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Load local .env when present
+        shell: bash
+        run: |
+          if [[ -f .env ]]; then
+            set -a
+            # shellcheck disable=SC1091
+            source .env
+            set +a
+          fi
+
+          WIKIJS_API_TOKEN="${WIKIJS_API_TOKEN:-${WIKI_JS_KEY:-}}"
+
+          {
+            printf 'TARGET_DIR=%s\n' "${TARGET_DIR:-.}"
+            printf 'WIKI_BRANCH=%s\n' "${WIKI_BRANCH:-wiki-production}"
+            printf 'WIKIJS_GRAPHQL_URL=%s\n' "${WIKIJS_GRAPHQL_URL:-}"
+            printf 'WIKIJS_API_TOKEN=%s\n' "${WIKIJS_API_TOKEN:-}"
+            printf 'WIKIJS_IMPORT_TARGET=%s\n' "${WIKIJS_IMPORT_TARGET:-}"
+          } >> "$GITHUB_ENV"
+
+      - name: Transmute Markdown links for Wiki.js
+        shell: bash
+        run: |
+          chmod +x ops/scripts/transmute-wikijs-links.sh
+          ops/scripts/transmute-wikijs-links.sh "$TARGET_DIR"
+
+      - name: Push transformed docs to Wiki.js branch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git switch --create "$WIKI_BRANCH"
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No transformed documentation changes to publish."
+          else
+            git commit -m "Build Wiki.js mirror"
+            git push origin "$WIKI_BRANCH" --force
+          fi
+
+      - name: Trigger Wiki.js import
+        shell: bash
+        run: |
+          : "${WIKIJS_GRAPHQL_URL:?WIKIJS_GRAPHQL_URL is required}"
+          : "${WIKIJS_API_TOKEN:?WIKIJS_API_TOKEN is required}"
+          : "${WIKIJS_IMPORT_TARGET:?WIKIJS_IMPORT_TARGET is required}"
+
+          payload=$(jq -n --arg targetId "$WIKIJS_IMPORT_TARGET" '{
+            query: "mutation ExecuteStorageAction($targetId: String!, $action: String!) { storage { executeAction(targetId: $targetId, action: $action) { responseResult { succeeded errorCode slug message } } } }",
+            variables: {
+              targetId: $targetId,
+              action: "import"
+            }
+          }')
+
+          curl --fail-with-body --show-error --silent \
+            --request POST "$WIKIJS_GRAPHQL_URL" \
+            --header "Authorization: Bearer $WIKIJS_API_TOKEN" \
+            --header "Content-Type: application/json" \
+            --data "$payload"
