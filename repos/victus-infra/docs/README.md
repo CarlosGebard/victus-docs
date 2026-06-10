@@ -4,25 +4,18 @@ This directory uses a Hub-and-Node documentation model.
 
 ## Main Hubs
 
-1. [000-SYSTEM-CONTEXT.md](000-SYSTEM-CONTEXT.md)
-2. [100-ARCHITECTURE.md](100-ARCHITECTURE.md)
-3. [200-OPERATIONS.md](200-OPERATIONS.md)
-4. [300-CONTRACTS.md](300-CONTRACTS.md)
-
-## Architecture Nodes
-
-- [architecture/101-NETWORKING.md](architecture/101-NETWORKING.md)
-- [architecture/102-COMPUTE-RUNTIMES.md](architecture/102-COMPUTE-RUNTIMES.md)
-- [architecture/103-DATA-STORAGE.md](architecture/103-DATA-STORAGE.md)
-- [architecture/104-OBSERVABILITY.md](architecture/104-OBSERVABILITY.md)
+1. [000-SYSTEM-CONTEXT.md](01-Projects/victus/victus-docs/repos/victus-infra/docs/000-SYSTEM-CONTEXT.md)
+2. [100-ARCHITECTURE.md](01-Projects/victus/victus-docs/repos/victus-infra/docs/100-ARCHITECTURE.md)
+3. [200-OPERATIONS.md](01-Projects/victus/victus-docs/repos/victus-infra/docs/200-OPERATIONS.md)
+4. [300-CONTRACTS.md](01-Projects/victus/victus-docs/repos/victus-infra/docs/300-CONTRACTS.md)
 
 ## Operational Nodes
 
-- [operations/201-LOCAL-RUNTIME.md](operations/201-LOCAL-RUNTIME.md)
-- [operations/202-DEPLOYMENT.md](operations/202-DEPLOYMENT.md)
-- [operations/203-SECURITY.md](operations/203-SECURITY.md)
-- [operations/204-TROUBLESHOOTING.md](operations/204-TROUBLESHOOTING.md)
-- [operations/205-ROADMAP.md](operations/205-ROADMAP.md)
+- [operations/local-runtime.md](local-runtime.md)
+- [operations/deployment.md](deployment.md)
+- [operations/security.md](01-Projects/victus/victus-docs/repos/victus-infra/docs/operations/security.md)
+- [operations/troubleshooting.md](troubleshooting.md)
+- [operations/roadmap.md](roadmap.md)
 
 ## Decisions
 

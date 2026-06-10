@@ -32,10 +32,10 @@ uv run victus-rag index qdrant --help
 
 ## Documentacion
 
-- [Contexto del sistema](../000-SYSTEM-CONTEXT.md)
-- [Arquitectura](../100-ARCHITECTURE.md)
-- [Operaciones](../200-OPERATIONS.md)
-- [Contratos](../300-CONTRACTS.md)
+- [Contexto del sistema](01-Projects/victus/victus-docs/repos/victus-rag/docs/000-SYSTEM-CONTEXT.md)
+- [Arquitectura](01-Projects/victus/victus-docs/repos/victus-rag/docs/100-ARCHITECTURE.md)
+- [Operaciones](01-Projects/victus/victus-docs/repos/victus-rag/docs/200-OPERATIONS.md)
+- [Contratos](01-Projects/victus/victus-docs/repos/victus-rag/docs/300-CONTRACTS.md)
 
 ## Responsabilidades
 

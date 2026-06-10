@@ -2,7 +2,7 @@
 id: VICTUS-MOC-100-ARCHITECTURE
 title: Victus Architecture
 status: active
-updated_at: 2026-05-27
+updated_at: 2026-06-09
 owners:
   - architecture
 audience:
@@ -46,18 +46,18 @@ Victus prioritizes:
 ## Artifact Flow
 
 ```txt
-PDF Source
--> Normalized Paper
--> Markdown Document
--> Section Block
--> Chunk
--> Claim
+Paper
+-> StructuredBlock
+-> ExperimentMap
+-> CanonicalEvidence
 -> Embedding
--> Retrieval Result
+-> Retrieval
+-> Agent Reasoning
 -> User Answer
 ```
 
-The detailed artifact contract lives in [docs/contracts/artifacts.md](docs/contracts/artifacts.md).
+The detailed artifact contract lives in
+[docs/contracts/artifacts.md](docs/contracts/artifacts.md).
 
 ## Decision Links
 

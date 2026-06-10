@@ -2,7 +2,7 @@
 id: VICTUS-MOC-000-SYSTEM-CONTEXT
 title: Victus System Context
 status: active
-updated_at: 2026-05-27
+updated_at: 2026-06-09
 owners:
   - architecture
 audience:
@@ -49,7 +49,8 @@ Victus is organized around:
 
 - scientific paper ingestion
 - Markdown extraction and normalization
-- chunk and claim generation
+- structured block generation
+- canonical evidence extraction
 - embeddings and retrieval
 - deterministic RAG
 - traceable scientific reasoning
@@ -61,7 +62,7 @@ Victus is organized around:
 |---|---|
 | `victus-docs` | Global documentation, contracts, ADRs, and agent-readable navigation |
 | `victus-infra` | Infrastructure, networking, storage, secrets, observability, and deployment foundation |
-| `victus-processing` | Paper ingestion, extraction, chunking, claims, and embeddings |
+| `victus-processing` | Paper ingestion, extraction, structured blocks, canonical evidence, and embeddings |
 | `victus-rag` | Retrieval, vector database integration, API orchestration, prompts, and answers |
 
 Implementation details and source changes belong in the owning repositories.

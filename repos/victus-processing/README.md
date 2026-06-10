@@ -6,7 +6,7 @@ This repository turns scientific-paper inputs into metadata, normalized PDFs,
 structured PDF-processing artifacts, and canonical evidence outputs. It owns the local
 processing workflow and the `data/` artifact layout used between stages.
 
-[Español](docs/README.es.md)
+[Español](01-Projects/victus/victus-docs/repos/victus-processing/docs/README.es.md)
 
 ## Quick Start
 
@@ -46,11 +46,11 @@ uv run pytest tests/test_cli_smoke.py -q
 
 ## Documentation
 
-- [System Context](docs/000-SYSTEM-CONTEXT.md)
-- [Architecture](docs/100-ARCHITECTURE.md)
-- [Contracts](docs/300-CONTRACTS.md)
-- [Operations](docs/200-OPERATIONS.md)
-- [CLI](docs/operations/cli.md)
+- [System Context](01-Projects/victus/victus-docs/repos/victus-processing/docs/000-SYSTEM-CONTEXT.md)
+- [Architecture](01-Projects/victus/victus-docs/repos/victus-processing/docs/100-ARCHITECTURE.md)
+- [Contracts](01-Projects/victus/victus-docs/repos/victus-processing/docs/300-CONTRACTS.md)
+- [Operations](01-Projects/victus/victus-docs/repos/victus-processing/docs/200-OPERATIONS.md)
+- [CLI](01-Projects/victus/victus-docs/repos/victus-processing/docs/operations/cli.md)
 - [Runbooks](docs/operations/runbooks/)
 
 ## Responsibilities

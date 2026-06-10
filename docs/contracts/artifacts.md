@@ -2,7 +2,7 @@
 id: VICTUS-CONTRACT-ARTIFACTS
 title: Victus Artifact Contract Hub
 status: active
-updated_at: 2026-05-27
+updated_at: 2026-06-09
 owners:
   - architecture
 audience:
@@ -26,14 +26,13 @@ Artifact-specific implementation details live in the owning repositories. This f
 ## Artifact Graph
 
 ```txt
-PDF Source
--> Normalized Paper
--> Markdown Document
--> Section Block
--> Chunk
--> Claim
+Paper
+-> StructuredBlock
+-> ExperimentMap
+-> CanonicalEvidence
 -> Embedding
--> Retrieval Result
+-> Retrieval
+-> Agent Reasoning
 -> User Answer
 ```
 
@@ -50,20 +49,23 @@ PDF Source
 
 | Artifact | Class | Stability | Canonical owner | Repository-local details |
 |---|---|---|---|---|
-| PDF Source | Source Artifact | stable input concept | `victus-docs` | [Processing Data Layout](../../repos/victus-processing/docs/contracts/data-layout.md) |
-| Normalized Paper | Intermediate Artifact | candidate contract | `victus-docs` | [Processing Architecture](../../repos/victus-processing/docs/100-ARCHITECTURE.md) |
-| Markdown Document | Intermediate Artifact | candidate contract | `victus-docs` | [Processing Data Layout](../../repos/victus-processing/docs/contracts/data-layout.md) |
-| Section Block | Intermediate Artifact | internal | owning repository | [Processing Architecture](../../repos/victus-processing/docs/100-ARCHITECTURE.md) |
-| Chunk | Contract Artifact | stable shared artifact | `victus-docs` | [Processing Contracts](../../repos/victus-processing/docs/300-CONTRACTS.md) |
-| Claim | Contract Artifact | stable shared artifact | `victus-docs` | [Processing Contracts](../../repos/victus-processing/docs/300-CONTRACTS.md), [RAG Contracts](../../repos/victus-rag/docs/300-CONTRACTS.md) |
+| Paper | Contract Artifact | active foundation | `victus-docs` | [Paper](scientific/paper.md) |
+| StructuredBlock | Contract Artifact | active foundation | `victus-docs` | [StructuredBlock](scientific/structured-block.md) |
+| ExperimentMap | Contract Artifact | draft | `victus-docs` | [ExperimentMap](scientific/experiment-map.md) |
+| CanonicalEvidence | Contract Artifact | draft | `victus-docs` | [CanonicalEvidence](scientific/canonical-evidence.md) |
 | Embedding | Contract Artifact | stable shared artifact | `victus-docs` | [RAG Contracts](../../repos/victus-rag/docs/300-CONTRACTS.md) |
-| Retrieval Result | Contract Artifact | stable shared artifact | `victus-docs` | [RAG Contracts](../../repos/victus-rag/docs/300-CONTRACTS.md) |
+| Retrieval | Contract Artifact | stable shared artifact | `victus-docs` | [RAG Contracts](../../repos/victus-rag/docs/300-CONTRACTS.md) |
 | User Answer | Product Artifact | stable output concept | `victus-docs` | pending |
 
 ## Stability Rules
 
-- `Section Block` is an internal intermediate artifact.
-- `Chunk` is a stable retrieval artifact shared across repositories.
+- `StructuredBlock` replaces legacy `Section Block` terminology.
+- `CanonicalEvidence` replaces the previous `Claim` contract concept.
+- Victus does not define `Claim` as a system contract.
+- `paper.md`, `paper.processed.json`, and `paper.final.json` are operational
+  pipeline artifacts, not canonical scientific contracts.
+- `paper.final.json` may be a repository-local implementation of
+  `StructuredBlock[]`.
 - Shared artifacts require stable identifiers.
 - Artifact IDs must remain stable across migrations.
 - Artifact versioning belongs in metadata, not in the semantic ID.
@@ -71,14 +73,14 @@ PDF Source
 Correct:
 
 ```yaml
-id: VICTUS-ARTIFACT-CLAIM
+id: VICTUS-ARTIFACT-CANONICAL-EVIDENCE
 version: 1
 ```
 
 Avoid:
 
 ```txt
-VICTUS-ARTIFACT-CLAIM-V1
+VICTUS-ARTIFACT-CANONICAL-EVIDENCE-V1
 ```
 
 ## Governance

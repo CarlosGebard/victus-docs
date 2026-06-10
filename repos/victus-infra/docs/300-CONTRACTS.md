@@ -372,11 +372,11 @@ langfuse.victus.io
 
 ## Related Documents
 
-- [000-SYSTEM-CONTEXT.md](000-SYSTEM-CONTEXT.md) -> repository purpose,
+- [000-SYSTEM-CONTEXT.md](01-Projects/victus/victus-docs/repos/victus-infra/docs/000-SYSTEM-CONTEXT.md) -> repository purpose,
   scope, and terminology.
-- [100-ARCHITECTURE.md](100-ARCHITECTURE.md) -> system shape, components,
+- [100-ARCHITECTURE.md](01-Projects/victus/victus-docs/repos/victus-infra/docs/100-ARCHITECTURE.md) -> system shape, components,
   boundaries, and flows.
-- [200-OPERATIONS.md](200-OPERATIONS.md) -> runtime workflows,
+- [200-OPERATIONS.md](01-Projects/victus/victus-docs/repos/victus-infra/docs/200-OPERATIONS.md) -> runtime workflows,
   deployment, and troubleshooting.
 - [decisions/](decisions/) -> future decision records for contract-changing
   migrations.

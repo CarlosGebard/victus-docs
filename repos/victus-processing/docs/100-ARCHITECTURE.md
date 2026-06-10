@@ -185,7 +185,7 @@ Artifact roles:
   canonical evidence artifacts.
 
 Detailed path, handoff, configuration, CLI, and schema contracts live in
-[Contracts](300-CONTRACTS.md).
+[Contracts](01-Projects/victus/victus-docs/repos/victus-processing/docs/300-CONTRACTS.md).
 
 ## 6. Quality Attributes
 
@@ -211,9 +211,9 @@ Detailed path, handoff, configuration, CLI, and schema contracts live in
 
 ## 8. Documentation Links
 
-- [System Context](000-SYSTEM-CONTEXT.md)
-- [Contracts](300-CONTRACTS.md)
-- [Operations](200-OPERATIONS.md)
-- [CLI operations](operations/cli.md)
-- [PDF processing operations](operations/pdf-processing.md)
+- [System Context](01-Projects/victus/victus-docs/repos/victus-processing/docs/000-SYSTEM-CONTEXT.md)
+- [Contracts](01-Projects/victus/victus-docs/repos/victus-processing/docs/300-CONTRACTS.md)
+- [Operations](01-Projects/victus/victus-docs/repos/victus-processing/docs/200-OPERATIONS.md)
+- [CLI operations](01-Projects/victus/victus-docs/repos/victus-processing/docs/operations/cli.md)
+- [PDF processing operations](pdf-processing.md)
 - [Runbooks](operations/runbooks/)

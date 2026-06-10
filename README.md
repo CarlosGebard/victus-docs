@@ -54,7 +54,7 @@ Victus documentation uses a hybrid Hub-and-Node convention. Root numbered files 
 |---|---|
 | `victus-docs` | Global documentation, contracts, ADRs, and agent-readable navigation |
 | `victus-infra` | Infrastructure, networking, storage, secrets, observability, and deployment foundation |
-| `victus-processing` | Paper ingestion, extraction, chunking, claims, and embeddings |
+| `victus-processing` | Paper ingestion, extraction, structured blocks, canonical evidence, and embeddings |
 | `victus-rag` | Retrieval, vector database integration, API orchestration, prompts, and answers |
 
 ## Validation

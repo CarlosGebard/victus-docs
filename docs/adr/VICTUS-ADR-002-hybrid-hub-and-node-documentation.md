@@ -67,8 +67,8 @@ ADR storage remains under `docs/adr/` for now, with `decisions/` acting as the r
 
 ## Related Documents
 
-- [System Context](../../000-SYSTEM-CONTEXT.md)
-- [Architecture MoC](../../100-ARCHITECTURE.md)
-- [Operations MoC](../../200-OPERATIONS.md)
-- [Contracts MoC](../../300-CONTRACTS.md)
-- [Decision Hub](../../decisions/README.md)
+- [System Context](01-Projects/victus/victus-docs/000-SYSTEM-CONTEXT.md)
+- [Architecture MoC](01-Projects/victus/victus-docs/100-ARCHITECTURE.md)
+- [Operations MoC](01-Projects/victus/victus-docs/200-OPERATIONS.md)
+- [Contracts MoC](01-Projects/victus/victus-docs/300-CONTRACTS.md)
+- [Decision Hub](01-Projects/victus/victus-docs/decisions/README.md)

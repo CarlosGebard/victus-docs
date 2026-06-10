@@ -1,0 +1,42 @@
+version: v1
+source: victus-docs
+subscriptions:
+  - repository: victus-processing
+    role: producer
+    contracts:
+      - victus.scientific.paper
+      - victus.scientific.structured_block
+      - victus.scientific.paper_classification
+      - victus.scientific.experiment_map
+      - victus.scientific.canonical_evidence
+      - victus.orchestration.pipeline_run
+      - victus.orchestration.pipeline_event
+      - victus.storage.layout
+      - victus.storage.artifact_manifest
+      - victus.process.paper_classification
+
+  - repository: victus-rag
+    role: consumer
+    contracts:
+      - victus.scientific.paper
+      - victus.scientific.structured_block
+      - victus.scientific.paper_classification
+      - victus.scientific.experiment_map
+      - victus.scientific.canonical_evidence
+      - victus.orchestration.pipeline_run
+      - victus.orchestration.pipeline_event
+      - victus.storage.layout
+      - victus.storage.artifact_manifest
+
+  - repository: victus-eval
+    role: consumer
+    contracts:
+      - victus.scientific.paper
+      - victus.scientific.structured_block
+      - victus.scientific.paper_classification
+      - victus.scientific.experiment_map
+      - victus.scientific.canonical_evidence
+      - victus.orchestration.pipeline_run
+      - victus.orchestration.pipeline_event
+      - victus.storage.layout
+      - victus.storage.artifact_manifest

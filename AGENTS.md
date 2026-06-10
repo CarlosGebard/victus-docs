@@ -37,6 +37,16 @@ Agents must start here:
 - Ask for missing architectural decisions instead of inventing behavior.
 - Explain a short plan before multi-file or ambiguous changes.
 - Validate changed documentation before claiming completion.
+- Start with `300-CONTRACTS.md` when modifying contracts.
+- Never edit `repos/**` as a canonical contract source.
+- When a repository needs a contract, update its local `victus.contracts.yml` in
+  the owning repository instead of copying contract files.
+- If modifying a canonical contract, check the registry and consumer
+  subscriptions first.
+- Do not move existing `repos/**` files.
+- Do not create real domain contracts until the domain contract is explicitly
+  designed and approved.
+- Do not rename existing contract documents unless necessary.
 
 ## Documentation Ownership
 

@@ -2,7 +2,7 @@
 id: VICTUS-MOC-300-CONTRACTS
 title: Victus Contracts
 status: active
-updated_at: 2026-05-27
+updated_at: 2026-06-09
 owners:
   - architecture
 audience:
@@ -22,14 +22,38 @@ This Map of Content routes contract readers to the current contract nodes.
 
 ## Contract Authority
 
-Canonical cross-repository contracts live in `victus-docs`.
+Canonical cross-repository contracts live only in `victus-docs`.
 
-Implementation details belong in repository-local documentation owned by the relevant repository.
+Repositories do not copy canonical contracts. They subscribe to contracts through
+repo-local `victus.contracts.yml` files using `contract_id@version`.
+
+Implementation details belong in repository-local documentation owned by the
+relevant repository.
+
+`repos/**` is read-only synchronized context, not the source of canonical
+contracts inside `victus-docs`.
+
+Wiki.js is a read-only rendered view, not a source of truth.
 
 ## Core Contract Documents
 
 | Document | Purpose |
 |---|---|
+| [Contract Registry](docs/contracts/README.md) | Canonical contract registry entrypoint |
+| [Contracts Registry](docs/contracts/_registry/contracts.registry.yml) | Canonical contract registry |
+| [Contract Subscriptions](docs/contracts/_registry/contract-subscriptions.yml) | Repository contract subscription registry |
+| [Contract Subscription Model](docs/contracts/governance/ContractSubscriptionModel.md) | Governance model for explicit repository subscriptions |
+| [Contract Change Process](docs/contracts/governance/ContractChangeProcess.md) | Governance process for patch, minor, and major contract changes |
+| [Scientific Contracts](docs/contracts/scientific/README.md) | Scientific contract flow and compatibility decisions |
+| [Paper](docs/contracts/scientific/paper.md) | Canonical scientific publication identity contract |
+| [StructuredBlock](docs/contracts/scientific/structured-block.md) | Canonical preserved source context unit |
+| [PaperClassification](docs/contracts/scientific/paper-classification.md) | Draft paper-level evidence routing classification |
+| [ExperimentMap](docs/contracts/scientific/experiment-map.md) | Draft result-centered block grouping artifact |
+| [CanonicalEvidence](docs/contracts/scientific/canonical-evidence.md) | Draft canonical scientific result contract |
+| [ArtifactManifest](docs/contracts/scientific/artifact-manifest.md) | Draft physical artifact manifest and lineage record |
+| [PipelineRun](docs/contracts/scientific/pipeline-run.md) | Draft canonical pipeline execution record |
+| [PipelineEvent](docs/contracts/scientific/pipeline-event.md) | Draft append-only pipeline event record |
+| [Processing Contracts](docs/contracts/processing/README.md) | Operational processing registry and pipeline execution contracts |
 | [Artifact Contract Hub](docs/contracts/artifacts.md) | Canonical artifact graph and governance |
 | [Repository Documentation Contract](docs/contracts/repository-documentation-contract.md) | Documentation expectations for ecosystem repositories |
 
@@ -37,8 +61,9 @@ Implementation details belong in repository-local documentation owned by the rel
 
 - repository documentation
 - artifacts
-- events
-- claims schemas
+- scientific evidence
+- retrieval
+- provenance
 - storage layouts
 - API boundaries
 
@@ -55,3 +80,10 @@ Contracts should:
 - be referenced by affected architecture documents
 
 Breaking contract changes require an ADR and updates to affected contract documents.
+
+Do not create real domain contracts until the domain contract has an owner,
+subscription need, and approved design.
+
+`StructuredBlock` replaces legacy `Section Block` terminology.
+`CanonicalEvidence` replaces the previous `Claim` contract concept; Victus does
+not define `Claim` as a system contract.

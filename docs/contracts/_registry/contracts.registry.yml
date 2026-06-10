@@ -1,0 +1,230 @@
+registry_version: v1
+source: victus-docs
+contracts:
+  - contract_id: victus.scientific.paper
+    version: v1
+    title: Paper
+    status: active
+    owner: victus-docs
+    domain: scientific
+    contract_type: domain
+    stability: foundation
+    path: docs/contracts/scientific/paper.md
+    implemented_by:
+      - victus-processing
+    consumed_by:
+      - victus-rag
+      - victus-eval
+    change_policy: proposal_required
+
+  - contract_id: victus.scientific.structured_block
+    version: v1
+    title: StructuredBlock
+    status: active
+    owner: victus-docs
+    domain: scientific
+    contract_type: domain
+    stability: foundation
+    path: docs/contracts/scientific/structured-block.md
+    implemented_by:
+      - victus-processing
+    consumed_by:
+      - victus-rag
+      - victus-eval
+    change_policy: proposal_required
+
+  - contract_id: victus.scientific.paper_classification
+    version: v1
+    title: PaperClassification
+    status: draft
+    owner: victus-docs
+    domain: scientific
+    contract_type: domain
+    stability: experimental
+    path: docs/contracts/scientific/paper-classification.md
+    implemented_by:
+      - victus-processing
+    consumed_by:
+      - victus-rag
+      - victus-eval
+    change_policy: proposal_required
+
+  - contract_id: victus.scientific.experiment_map
+    version: v1
+    title: ExperimentMap
+    status: draft
+    owner: victus-docs
+    domain: scientific
+    contract_type: domain
+    stability: experimental
+    path: docs/contracts/scientific/experiment-map.md
+    implemented_by:
+      - victus-processing
+    consumed_by:
+      - victus-rag
+      - victus-eval
+    change_policy: proposal_required
+
+  - contract_id: victus.scientific.canonical_evidence
+    version: v1
+    title: CanonicalEvidence
+    status: draft
+    owner: victus-docs
+    domain: scientific
+    contract_type: domain
+    stability: experimental
+    path: docs/contracts/scientific/canonical-evidence.md
+    implemented_by:
+      - victus-processing
+    consumed_by:
+      - victus-rag
+      - victus-eval
+    change_policy: proposal_required
+
+  - contract_id: victus.orchestration.pipeline_run
+    version: v1
+    title: PipelineRun
+    status: draft
+    owner: victus-docs
+    domain: orchestration
+    contract_type: orchestration
+    stability: experimental
+    path: docs/contracts/scientific/pipeline-run.md
+    implemented_by:
+      - victus-processing
+    consumed_by:
+      - victus-rag
+      - victus-eval
+    change_policy: proposal_required
+
+  - contract_id: victus.orchestration.pipeline_event
+    version: v1
+    title: PipelineEvent
+    status: draft
+    owner: victus-docs
+    domain: orchestration
+    contract_type: orchestration
+    stability: experimental
+    path: docs/contracts/scientific/pipeline-event.md
+    implemented_by:
+      - victus-processing
+    consumed_by:
+      - victus-rag
+      - victus-eval
+    change_policy: proposal_required
+
+  - contract_id: victus.storage.artifact_manifest
+    version: v1
+    title: ArtifactManifest
+    status: draft
+    owner: victus-docs
+    domain: storage
+    contract_type: storage
+    stability: experimental
+    path: docs/contracts/scientific/artifact-manifest.md
+    implemented_by:
+      - victus-processing
+    consumed_by:
+      - victus-rag
+      - victus-eval
+    change_policy: proposal_required
+
+  - contract_id: victus.storage.layout
+    version: v1
+    title: Storage Layout
+    status: draft
+    owner: victus-docs
+    domain: storage
+    contract_type: storage
+    stability: experimental
+    path: docs/contracts/processing/README.md
+    implemented_by:
+      - victus-processing
+    consumed_by:
+      - victus-rag
+      - victus-eval
+    change_policy: proposal_required
+
+  - contract_id: victus.process.paper_classification
+    version: v1
+    title: Paper Classification Process
+    status: draft
+    owner: victus-docs
+    domain: process
+    contract_type: process
+    stability: experimental
+    path: docs/contracts/scientific/paper-classification.md
+    implemented_by:
+      - victus-processing
+    consumed_by: []
+    change_policy: proposal_required
+
+  - contract_id: victus.processing.papers
+    version: v1
+    title: Processing Papers
+    status: draft
+    owner: victus-docs
+    domain: processing
+    contract_type: database
+    stability: experimental
+    path: docs/contracts/processing/papers.md
+    implemented_by:
+      - victus-processing
+    consumed_by: []
+    change_policy: proposal_required
+
+  - contract_id: victus.processing.pipeline_runs
+    version: v1
+    title: Pipeline Runs
+    status: draft
+    owner: victus-docs
+    domain: processing
+    contract_type: database
+    stability: experimental
+    path: docs/contracts/processing/pipeline-runs.md
+    implemented_by:
+      - victus-processing
+    consumed_by: []
+    change_policy: proposal_required
+
+  - contract_id: victus.processing.stage_runs
+    version: v1
+    title: Stage Runs
+    status: draft
+    owner: victus-docs
+    domain: processing
+    contract_type: database
+    stability: experimental
+    path: docs/contracts/processing/stage-runs.md
+    implemented_by:
+      - victus-processing
+    consumed_by: []
+    change_policy: proposal_required
+
+  - contract_id: victus.processing.artifacts
+    version: v1
+    title: Processing Artifacts
+    status: draft
+    owner: victus-docs
+    domain: processing
+    contract_type: database
+    stability: experimental
+    path: docs/contracts/processing/artifacts.md
+    implemented_by:
+      - victus-processing
+    consumed_by: []
+    change_policy: proposal_required
+
+  - contract_id: victus.processing.processing_errors
+    version: v1
+    title: Processing Errors
+    status: draft
+    owner: victus-docs
+    domain: processing
+    contract_type: database
+    stability: experimental
+    path: docs/contracts/processing/processing-errors.md
+    implemented_by:
+      - victus-processing
+    consumed_by: []
+    change_policy: proposal_required

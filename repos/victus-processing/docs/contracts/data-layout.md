@@ -209,9 +209,9 @@ layout above unless an explicit compatibility task requires the legacy path.
 
 ## 7. Related Documents
 
-- [Contracts](../300-CONTRACTS.md)
+- [Contracts](01-Projects/victus/victus-docs/repos/victus-processing/docs/300-CONTRACTS.md)
 - [Configuration and CLI](configuration-and-cli.md)
 - [Stage Handoffs](stage-handoffs.md)
 - [Artifact Schemas](artifact-schemas.md)
-- [Architecture](../100-ARCHITECTURE.md)
-- [System Context](../000-SYSTEM-CONTEXT.md)
+- [Architecture](01-Projects/victus/victus-docs/repos/victus-processing/docs/100-ARCHITECTURE.md)
+- [System Context](01-Projects/victus/victus-docs/repos/victus-processing/docs/000-SYSTEM-CONTEXT.md)

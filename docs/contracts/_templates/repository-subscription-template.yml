@@ -1,0 +1,11 @@
+version: v1
+subscriptions:
+  - repository: example-producer
+    role: producer
+    contracts:
+      - victus.example.contract
+
+  - repository: example-consumer
+    role: consumer
+    contracts:
+      - victus.example.contract

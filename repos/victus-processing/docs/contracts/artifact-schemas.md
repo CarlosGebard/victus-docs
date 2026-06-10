@@ -331,7 +331,7 @@ DOI and document ID.
 
 ## 11. Related Documents
 
-- [Contracts](../300-CONTRACTS.md)
+- [Contracts](01-Projects/victus/victus-docs/repos/victus-processing/docs/300-CONTRACTS.md)
 - [Data Layout](data-layout.md)
 - [Stage Handoffs](stage-handoffs.md)
 - [Block](block.md)

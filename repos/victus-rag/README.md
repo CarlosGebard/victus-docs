@@ -1,6 +1,6 @@
 # victus-rag
 
-[Español](docs/localization/README.es.md)
+[Español](01-Projects/victus/victus-docs/repos/victus-rag/docs/localization/README.es.md)
 
 Retrieval experimentation CLI for scientific claims.
 
@@ -35,10 +35,10 @@ uv run victus-rag index qdrant --help
 
 ## Documentation
 
-- [System Context](docs/000-SYSTEM-CONTEXT.md)
-- [Architecture](docs/100-ARCHITECTURE.md)
-- [Operations](docs/200-OPERATIONS.md)
-- [Contracts](docs/300-CONTRACTS.md)
+- [System Context](01-Projects/victus/victus-docs/repos/victus-rag/docs/000-SYSTEM-CONTEXT.md)
+- [Architecture](01-Projects/victus/victus-docs/repos/victus-rag/docs/100-ARCHITECTURE.md)
+- [Operations](01-Projects/victus/victus-docs/repos/victus-rag/docs/200-OPERATIONS.md)
+- [Contracts](01-Projects/victus/victus-docs/repos/victus-rag/docs/300-CONTRACTS.md)
 - [Decisions](docs/decisions/)
 - [Runbooks](docs/runbooks/)
 
