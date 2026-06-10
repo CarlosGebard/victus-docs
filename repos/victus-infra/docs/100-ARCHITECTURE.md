@@ -78,7 +78,7 @@ Components:
 nginx-private    private HTTP edge
 nginx-public     public HTTP/TLS edge
 seaweedfs        S3-compatible object storage
-postgres         durable registry database
+pipeline-postgres durable pipeline database
 redis            durable event stream
 etcd             CoreDNS backend state
 coredns          private DNS for victus.io
@@ -292,7 +292,7 @@ consumer repository
 
 Consumer systems interact with infrastructure through stable endpoints and
 shared contracts. Detailed contract guarantees live in
-[300-CONTRACTS.md](01-Projects/victus/victus-docs/repos/victus-infra/docs/300-CONTRACTS.md).
+[300-CONTRACTS.md](300-CONTRACTS.md).
 
 ## Artifact And Data Flow
 
@@ -367,11 +367,11 @@ Loki             log aggregation
 
 ## Documentation Links
 
-- [000-SYSTEM-CONTEXT.md](01-Projects/victus/victus-docs/repos/victus-infra/docs/000-SYSTEM-CONTEXT.md) -> repository purpose,
+- [000-SYSTEM-CONTEXT.md](000-SYSTEM-CONTEXT.md) -> repository purpose,
   scope, concepts, and documentation map.
-- [200-OPERATIONS.md](01-Projects/victus/victus-docs/repos/victus-infra/docs/200-OPERATIONS.md) -> validation, deployment,
+- [200-OPERATIONS.md](200-OPERATIONS.md) -> validation, deployment,
   maintenance, and troubleshooting.
-- [300-CONTRACTS.md](01-Projects/victus/victus-docs/repos/victus-infra/docs/300-CONTRACTS.md) -> shared guarantees, interfaces,
+- [300-CONTRACTS.md](300-CONTRACTS.md) -> shared guarantees, interfaces,
   schemas, and invariants.
 - [decisions/](decisions/) -> decision records when architectural reasoning
   needs to be preserved.
