@@ -76,11 +76,11 @@ jobs:
           : "${WIKIJS_API_TOKEN:?WIKIJS_API_TOKEN is required}"
           : "${WIKIJS_IMPORT_TARGET:?WIKIJS_IMPORT_TARGET is required}"
 
-          payload=$(jq -n --arg targetId "$WIKIJS_IMPORT_TARGET" '{
-            query: "mutation ExecuteStorageAction($targetId: String!, $action: String!) { storage { executeAction(targetId: $targetId, action: $action) { responseResult { succeeded errorCode slug message } } } }",
+          payload=$(jq -n --arg targetKey "$WIKIJS_IMPORT_TARGET" '{
+            query: "mutation ExecuteStorageAction($targetKey: String!, $handler: String!) { storage { executeAction(targetKey: $targetKey, handler: $handler) { responseResult { succeeded errorCode slug message } } } }",
             variables: {
-              targetId: $targetId,
-              action: "import"
+              targetKey: $targetKey,
+              handler: "import"
             }
           }')
 
