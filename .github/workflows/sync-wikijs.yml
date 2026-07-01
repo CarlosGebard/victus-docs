@@ -10,11 +10,12 @@ permissions:
   contents: write
 
 jobs:
-  sync-wiki:
+  sync-wikijs:
     runs-on: ubuntu-latest
 
     env:
-      TARGET_DIR: .
+      SOURCE_DIR: .
+      EXPORT_DIR: /tmp/wiki-export
       WIKI_BRANCH: wiki-production
       WIKIJS_GRAPHQL_URL: ${{ secrets.WIKIJS_GRAPHQL_URL }}
       WIKIJS_API_TOKEN: ${{ secrets.WIKIJS_API_TOKEN }}
@@ -40,34 +41,41 @@ jobs:
           WIKIJS_API_TOKEN="${WIKIJS_API_TOKEN:-${WIKI_JS_KEY:-}}"
 
           {
-            printf 'TARGET_DIR=%s\n' "${TARGET_DIR:-.}"
+            printf 'SOURCE_DIR=%s\n' "${SOURCE_DIR:-.}"
+            printf 'EXPORT_DIR=%s\n' "${EXPORT_DIR:-/tmp/wiki-export}"
             printf 'WIKI_BRANCH=%s\n' "${WIKI_BRANCH:-wiki-production}"
             printf 'WIKIJS_GRAPHQL_URL=%s\n' "${WIKIJS_GRAPHQL_URL:-}"
             printf 'WIKIJS_API_TOKEN=%s\n' "${WIKIJS_API_TOKEN:-}"
             printf 'WIKIJS_IMPORT_TARGET=%s\n' "${WIKIJS_IMPORT_TARGET:-}"
           } >> "$GITHUB_ENV"
 
-      - name: Transmute Markdown links for Wiki.js
+      - name: Build Wiki.js export
         shell: bash
         run: |
-          chmod +x ops/scripts/transmute-wikijs-links.sh
-          ops/scripts/transmute-wikijs-links.sh "$TARGET_DIR"
+          chmod +x ops/scripts/build-wikijs-export.sh
+          ops/scripts/build-wikijs-export.sh "$SOURCE_DIR" "$EXPORT_DIR"
 
-      - name: Push transformed docs to Wiki.js branch
+      - name: Publish clean Wiki.js branch
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git switch --create "$WIKI_BRANCH"
-          git add -A
+          # The orphan branch avoids leaking source-only files such as workflows,
+          # scripts, runtime artifacts, or prior branch history into Wiki.js.
+          git switch --orphan "$WIKI_BRANCH"
+          git rm -rf . >/dev/null 2>&1 || true
 
+          cp -a "$EXPORT_DIR"/. .
+
+          git add -A
           if git diff --cached --quiet; then
-            echo "No transformed documentation changes to publish."
+            echo "No Wiki.js export changes to publish."
           else
-            git commit -m "Build Wiki.js mirror"
-            git push origin "$WIKI_BRANCH" --force
+            git commit -m "Build Wiki.js export"
           fi
+
+          git push origin "$WIKI_BRANCH" --force
 
       - name: Trigger Wiki.js import
         shell: bash
@@ -76,6 +84,7 @@ jobs:
           : "${WIKIJS_API_TOKEN:?WIKIJS_API_TOKEN is required}"
           : "${WIKIJS_IMPORT_TARGET:?WIKIJS_IMPORT_TARGET is required}"
 
+          # Import runs only after the normalized export was validated and pushed.
           payload=$(jq -n --arg targetKey "$WIKIJS_IMPORT_TARGET" '{
             query: "mutation ExecuteStorageAction($targetKey: String!, $handler: String!) { storage { executeAction(targetKey: $targetKey, handler: $handler) { responseResult { succeeded errorCode slug message } } } }",
             variables: {

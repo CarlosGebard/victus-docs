@@ -59,5 +59,5 @@ If implementation source or repository-local runbooks need changes, switch to th
 
 | Document | Purpose |
 |---|---|
-| [README.md](01-Projects/victus/victus-docs/README.md) | Human-facing repository overview |
-| [AGENTS.md](01-Projects/victus/victus-docs/AGENTS.md) | Agent-facing repository rules |
+| [README.md](README.md) | Human-facing repository overview |
+| [AGENTS.md](AGENTS.md) | Agent-facing repository rules |
