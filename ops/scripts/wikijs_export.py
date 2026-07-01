@@ -25,12 +25,6 @@ EXCLUDED_DIRS = {
     "node_modules",
     "ops",
 }
-ROOT_MOC_FILES = {
-    "000-SYSTEM-CONTEXT.md",
-    "100-ARCHITECTURE.md",
-    "200-OPERATIONS.md",
-    "300-CONTRACTS.md",
-}
 URL_SCHEMES = {
     "http",
     "https",
@@ -55,7 +49,7 @@ class ManifestEntry:
 class Stats:
     copied_docs: int = 0
     copied_assets: int = 0
-    relocated_paths: int = 0
+    frontmatter_tags_rewritten: int = 0
     rewritten_links: int = 0
 
 
@@ -69,16 +63,6 @@ def to_posix(path: Path) -> str:
 
 def is_excluded(path: Path) -> bool:
     return any(part in EXCLUDED_DIRS for part in path.parts)
-
-
-def export_relative_path(rel_path: Path) -> Path:
-    # Source filenames stay intact. The only layout change is moving the root
-    # numbered MoC files into a dedicated folder because Wiki.js has trouble
-    # resolving them reliably at the import root.
-    rel_posix = to_posix(rel_path)
-    if rel_posix in ROOT_MOC_FILES:
-        return Path("moc") / rel_path
-    return rel_path
 
 
 def wikijs_path(export_path: str) -> str:
@@ -104,10 +88,7 @@ def build_manifest(source_dir: Path, files: list[Path], stats: Stats) -> dict[st
 
     for rel in files:
         source = to_posix(rel)
-        export_rel = export_relative_path(rel)
-        export_path = to_posix(export_rel)
-        if source != export_path:
-            stats.relocated_paths += 1
+        export_path = source
         if export_path in export_to_source:
             other = export_to_source[export_path]
             raise SystemExit(
@@ -176,7 +157,7 @@ def alias_source_target(
             for source in manifest
             if source.endswith(".md")
             and (not scope or source.startswith(scope + "/"))
-            and PurePosixPath(export_relative_path(Path(source))).name == target_file
+            and PurePosixPath(source).name == target_file
         ]
         if len(exact_matches) == 1:
             return exact_matches[0]
@@ -197,7 +178,7 @@ def alias_source_target(
             source_stem = re.sub(
                 r"^\d+-",
                 "",
-                PurePosixPath(export_relative_path(Path(source))).stem,
+                PurePosixPath(source).stem,
             ).lower()
             if source_stem == target_stem:
                 matches.append(source)
@@ -275,6 +256,69 @@ def rewrite_markdown(
     return REF_LINK_RE.sub(replace_reference, text)
 
 
+def rewrite_wikijs_frontmatter_tags(source_path: str, text: str, stats: Stats) -> str:
+    if not text.startswith("---\n"):
+        return text
+
+    end = text.find("\n---", 4)
+    if end == -1:
+        return text
+
+    frontmatter = text[4:end]
+    rest = text[end:]
+    lines = frontmatter.splitlines()
+    output: list[str] = []
+    changed = False
+    index = 0
+
+    while index < len(lines):
+        line = lines[index]
+        if line == "tags:":
+            tag_index = index + 1
+            tags: list[str] = []
+            while tag_index < len(lines):
+                tag_line = lines[tag_index]
+                match = re.fullmatch(r"\s{2}-\s+(.+)", tag_line)
+                if not match:
+                    break
+                tags.append(match.group(1).strip().strip('"\''))
+                tag_index += 1
+
+            if tags:
+                # Wiki.js imports expect frontmatter tags as a scalar string;
+                # YAML lists trigger "split is not a function" during import.
+                output.append(f"tags: {', '.join(tags)}")
+                stats.frontmatter_tags_rewritten += 1
+                changed = True
+                index = tag_index
+                continue
+
+        output.append(line)
+        index += 1
+
+    if not changed:
+        return text
+
+    return "---\n" + "\n".join(output) + rest
+
+
+def validate_wikijs_frontmatter_tags(source_path: str, text: str) -> list[str]:
+    if not text.startswith("---\n"):
+        return []
+
+    end = text.find("\n---", 4)
+    if end == -1:
+        return []
+
+    frontmatter = text[4:end]
+    lines = frontmatter.splitlines()
+    problems: list[str] = []
+    for index, line in enumerate(lines):
+        if line == "tags:" and index + 1 < len(lines) and re.fullmatch(r"\s{2}-\s+.+", lines[index + 1]):
+            problems.append(f"{source_path}: frontmatter tags remained a YAML list")
+    return problems
+
+
 def validate_problem_paths(manifest: dict[str, ManifestEntry]) -> list[str]:
     problems: list[str] = []
     seen_wiki: dict[str, str] = {}
@@ -297,8 +341,9 @@ def copy_export(
     export_dir: Path,
     manifest: dict[str, ManifestEntry],
     stats: Stats,
-) -> list[str]:
+) -> tuple[list[str], list[str]]:
     broken_links: list[str] = []
+    frontmatter_problems: list[str] = []
     asset_sources = {
         source for source in manifest if Path(source).suffix.lower() in ASSET_EXTENSIONS
     }
@@ -314,13 +359,15 @@ def copy_export(
         if src.suffix.lower() == ".md":
             text = src.read_text(encoding="utf-8")
             rewritten = rewrite_markdown(source, text, manifest, asset_sources, broken_links, stats)
+            rewritten = rewrite_wikijs_frontmatter_tags(source, rewritten, stats)
+            frontmatter_problems.extend(validate_wikijs_frontmatter_tags(source, rewritten))
             dst.write_text(rewritten, encoding="utf-8")
             stats.copied_docs += 1
         else:
             shutil.copy2(src, dst)
             stats.copied_assets += 1
 
-    return broken_links
+    return broken_links, frontmatter_problems
 
 
 def write_manifest(export_dir: Path, manifest: dict[str, ManifestEntry]) -> None:
@@ -365,15 +412,16 @@ def main(argv: list[str]) -> int:
 
     # A clean export directory keeps the source branch untouched and makes
     # repeated runs idempotent.
-    broken_links = copy_export(source_dir, export_dir, manifest, stats)
+    broken_links, frontmatter_problems = copy_export(source_dir, export_dir, manifest, stats)
     write_manifest(export_dir, manifest)
 
     print("Wiki.js export build complete")
     print(f"  Markdown files copied: {stats.copied_docs}")
     print(f"  Assets copied: {stats.copied_assets}")
-    print(f"  Paths relocated: {stats.relocated_paths}")
+    print(f"  Frontmatter tag lists rewritten: {stats.frontmatter_tags_rewritten}")
     print(f"  Links rewritten: {stats.rewritten_links}")
     print(f"  Broken internal links found: {len(broken_links)}")
+    print(f"  Frontmatter tag validation errors: {len(frontmatter_problems)}")
     print("  Collisions found: 0")
     print(f"  Export directory: {export_dir}")
 
@@ -381,6 +429,12 @@ def main(argv: list[str]) -> int:
         print("Broken internal Markdown links:", file=sys.stderr)
         for broken in broken_links:
             print(f"  - {broken}", file=sys.stderr)
+        return 1
+
+    if frontmatter_problems:
+        print("Wiki.js frontmatter validation failed:", file=sys.stderr)
+        for problem in frontmatter_problems:
+            print(f"  - {problem}", file=sys.stderr)
         return 1
 
     return 0
