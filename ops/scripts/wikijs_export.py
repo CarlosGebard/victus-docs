@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a normalized Wiki.js export tree for victus-docs."""
+"""Build a Wiki.js export tree for victus-docs."""
 
 from __future__ import annotations
 
@@ -25,11 +25,11 @@ EXCLUDED_DIRS = {
     "node_modules",
     "ops",
 }
-ROOT_NAME_OVERRIDES = {
-    "000-SYSTEM-CONTEXT.md": "system-context.md",
-    "100-ARCHITECTURE.md": "architecture.md",
-    "200-OPERATIONS.md": "operations.md",
-    "300-CONTRACTS.md": "contracts.md",
+ROOT_MOC_FILES = {
+    "000-SYSTEM-CONTEXT.md",
+    "100-ARCHITECTURE.md",
+    "200-OPERATIONS.md",
+    "300-CONTRACTS.md",
 }
 URL_SCHEMES = {
     "http",
@@ -40,7 +40,7 @@ URL_SCHEMES = {
     "ftps",
     "data",
 }
-PROBLEM_SEGMENT_RE = re.compile(r"[^a-z0-9.-]")
+PROBLEM_SEGMENT_RE = re.compile(r"[\s\\:*?\"<>|]")
 LINK_RE = re.compile(r"(!?)\[([^\]\n]*)\]\(([^)\n]+)\)")
 REF_LINK_RE = re.compile(r"(?<!\!)\[([^\]\n]+)\]:\s*(\S+)")
 
@@ -55,7 +55,7 @@ class ManifestEntry:
 class Stats:
     copied_docs: int = 0
     copied_assets: int = 0
-    normalized_paths: int = 0
+    relocated_paths: int = 0
     rewritten_links: int = 0
 
 
@@ -71,41 +71,14 @@ def is_excluded(path: Path) -> bool:
     return any(part in EXCLUDED_DIRS for part in path.parts)
 
 
-def camel_to_words(value: str) -> str:
-    value = re.sub(r"([a-z0-9])([A-Z])", r"\1-\2", value)
-    value = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1-\2", value)
-    return value
-
-
-def kebab_segment(segment: str, *, is_file: bool = False) -> str:
-    stem, suffix = os.path.splitext(segment) if is_file else (segment, "")
-    stem = camel_to_words(stem)
-    stem = stem.replace("_", "-")
-    stem = re.sub(r"[^A-Za-z0-9.-]+", "-", stem)
-    stem = re.sub(r"-+", "-", stem).strip("-.")
-    stem = stem.lower() or "index"
-    return f"{stem}{suffix.lower()}"
-
-
-def normalize_relative_path(rel_path: Path) -> Path:
-    # Wiki.js resolves pages more predictably when paths avoid case, spaces,
-    # CamelCase, and source-only numbering conventions.
+def export_relative_path(rel_path: Path) -> Path:
+    # Source filenames stay intact. The only layout change is moving the root
+    # numbered MoC files into a dedicated folder because Wiki.js has trouble
+    # resolving them reliably at the import root.
     rel_posix = to_posix(rel_path)
-    if rel_posix in ROOT_NAME_OVERRIDES:
-        return Path(ROOT_NAME_OVERRIDES[rel_posix])
-
-    parts = list(rel_path.parts)
-    normalized: list[str] = []
-    for index, part in enumerate(parts):
-        is_last = index == len(parts) - 1
-        if part == "_registry":
-            normalized.append("registry")
-            continue
-        if is_last:
-            normalized.append(kebab_segment(part, is_file=True))
-        else:
-            normalized.append(kebab_segment(part))
-    return Path(*normalized)
+    if rel_posix in ROOT_MOC_FILES:
+        return Path("moc") / rel_path
+    return rel_path
 
 
 def wikijs_path(export_path: str) -> str:
@@ -131,14 +104,14 @@ def build_manifest(source_dir: Path, files: list[Path], stats: Stats) -> dict[st
 
     for rel in files:
         source = to_posix(rel)
-        export_rel = normalize_relative_path(rel)
+        export_rel = export_relative_path(rel)
         export_path = to_posix(export_rel)
         if source != export_path:
-            stats.normalized_paths += 1
+            stats.relocated_paths += 1
         if export_path in export_to_source:
             other = export_to_source[export_path]
             raise SystemExit(
-                f"Wiki.js export path collision: {other} and {source} both normalize to {export_path}"
+                f"Wiki.js export path collision: {other} and {source} both map to {export_path}"
             )
         export_to_source[export_path] = source
         manifest[source] = ManifestEntry(export_path=export_path, wikijs_path=wikijs_path(export_path))
@@ -189,8 +162,8 @@ def alias_source_target(
     if not target_name.lower().endswith(".md"):
         return None
 
-    target_file = kebab_segment(target_name, is_file=True)
-    target_stem = re.sub(r"^\d+-", "", target_file[:-3])
+    target_file = target_name
+    target_stem = re.sub(r"^\d+-", "", PurePosixPath(target_file).stem).lower()
     current_parts = PurePosixPath(current_source).parts
     scopes: list[str] = []
     if len(current_parts) >= 2 and current_parts[0] == "repos":
@@ -203,7 +176,7 @@ def alias_source_target(
             for source in manifest
             if source.endswith(".md")
             and (not scope or source.startswith(scope + "/"))
-            and PurePosixPath(normalize_relative_path(Path(source))).name == target_file
+            and PurePosixPath(export_relative_path(Path(source))).name == target_file
         ]
         if len(exact_matches) == 1:
             return exact_matches[0]
@@ -224,8 +197,8 @@ def alias_source_target(
             source_stem = re.sub(
                 r"^\d+-",
                 "",
-                PurePosixPath(normalize_relative_path(Path(source))).stem,
-            )
+                PurePosixPath(export_relative_path(Path(source))).stem,
+            ).lower()
             if source_stem == target_stem:
                 matches.append(source)
         if len(matches) == 1:
@@ -308,7 +281,7 @@ def validate_problem_paths(manifest: dict[str, ManifestEntry]) -> list[str]:
     for source, entry in manifest.items():
         export = PurePosixPath(entry.export_path)
         for segment in export.parts:
-            if segment in {".", ".."} or PROBLEM_SEGMENT_RE.search(segment) or segment != segment.lower():
+            if segment in {".", ".."} or PROBLEM_SEGMENT_RE.search(segment):
                 problems.append(f"{source}: problematic Wiki.js path segment in {entry.export_path}")
         previous = seen_wiki.get(entry.wikijs_path)
         if previous:
@@ -398,7 +371,7 @@ def main(argv: list[str]) -> int:
     print("Wiki.js export build complete")
     print(f"  Markdown files copied: {stats.copied_docs}")
     print(f"  Assets copied: {stats.copied_assets}")
-    print(f"  Paths normalized: {stats.normalized_paths}")
+    print(f"  Paths relocated: {stats.relocated_paths}")
     print(f"  Links rewritten: {stats.rewritten_links}")
     print(f"  Broken internal links found: {len(broken_links)}")
     print("  Collisions found: 0")

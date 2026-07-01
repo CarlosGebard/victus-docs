@@ -2,19 +2,22 @@
 
 ## Goal
 
-Build a stable, reversible Wiki.js export pipeline that publishes normalized
-documentation to `wiki-production` without mutating the source branch.
+Build a stable, reversible Wiki.js export pipeline that publishes documentation
+to `wiki-production` without mutating the source branch or renaming source
+documents.
 
 ## Scope
 
 - Add a local export command:
   `ops/scripts/build-wikijs-export.sh . /tmp/wiki-export`
 - Generate a clean temporary export tree for Wiki.js.
-- Normalize exported paths to lowercase kebab-case.
+- Preserve source filenames and directory names in the export.
+- Move only root numbered MoC files into `moc/` so Wiki.js does not have to
+  resolve them from the import root.
 - Generate `.wikijs-path-map.json`.
 - Rewrite Markdown links against the manifest.
-- Validate broken links, normalized path collisions, and problematic Wiki.js
-  paths before publishing.
+- Validate broken links, export path collisions, and problematic Wiki.js paths
+  before publishing.
 - Replace the GitHub Actions workflow with an orphan-branch publish/import flow.
 
 ## Assumptions
@@ -23,16 +26,15 @@ documentation to `wiki-production` without mutating the source branch.
 - Wiki.js imports from the `wiki-production` branch only.
 - `repos/**` is synchronized context and is exported as read-only rendered
   documentation when referenced, but is not edited as canonical source.
-- Root MoC filenames have stable public Wiki.js paths:
-  `/system-context`, `/architecture`, `/operations`, `/contracts`.
-- `README.md` is exported as `readme.md`; Wiki.js links omit `.md`, so a
-  README at `docs/contracts/README.md` is addressed as `/docs/contracts/readme`.
-- `_registry` is exported as `registry` to avoid path segments that are awkward
-  in Wiki.js.
+- Root MoC filenames are preserved and relocated:
+  `/moc/000-SYSTEM-CONTEXT`, `/moc/100-ARCHITECTURE`,
+  `/moc/200-OPERATIONS`, `/moc/300-CONTRACTS`.
+- `README.md`, CamelCase names, `_registry`, and existing directory names are
+  preserved in the export.
 
 ## Steps
 
-1. Add a Python export builder for copy, normalization, manifest generation,
+1. Add a Python export builder for copy, MoC relocation, manifest generation,
    Markdown link rewriting, and validation.
 2. Add a small Bash wrapper that is convenient locally and in CI.
 3. Replace the workflow with a clean orphan branch publish.
@@ -44,14 +46,15 @@ documentation to `wiki-production` without mutating the source branch.
 
 - Run `ops/scripts/build-wikijs-export.sh . /tmp/wiki-export`.
 - Inspect `.wikijs-path-map.json`.
-- Confirm exported root paths include:
-  `/system-context`, `/architecture`, `/operations`, `/contracts`,
-  `/agents`, `/plans`.
-- Confirm no `.github`, `ops`, `repos`, or `.git` content is exported.
+- Confirm exported MoC paths include:
+  `/moc/000-SYSTEM-CONTEXT`, `/moc/100-ARCHITECTURE`,
+  `/moc/200-OPERATIONS`, `/moc/300-CONTRACTS`.
+- Confirm root `AGENTS.md` and `PLANS.md` remain `/AGENTS` and `/PLANS`.
+- Confirm no `.github`, `ops`, or `.git` content is exported.
 
 ## Risks
 
 - Mirrored `repos/**` pages may increase Wiki.js page count, but exporting them
   keeps existing cross-repository navigation from producing broken links.
-- Any future filename pair that normalizes to the same path, such as `Paper.md`
-  and `paper.md`, will block export until resolved.
+- Any future source pair that maps to the same export path will block export
+  until resolved.

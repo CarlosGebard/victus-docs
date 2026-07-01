@@ -84,7 +84,7 @@ jobs:
           : "${WIKIJS_API_TOKEN:?WIKIJS_API_TOKEN is required}"
           : "${WIKIJS_IMPORT_TARGET:?WIKIJS_IMPORT_TARGET is required}"
 
-          # Import runs only after the normalized export was validated and pushed.
+          # Import runs only after the Wiki.js export was validated and pushed.
           payload=$(jq -n --arg targetKey "$WIKIJS_IMPORT_TARGET" '{
             query: "mutation ExecuteStorageAction($targetKey: String!, $handler: String!) { storage { executeAction(targetKey: $targetKey, handler: $handler) { responseResult { succeeded errorCode slug message } } } }",
             variables: {
