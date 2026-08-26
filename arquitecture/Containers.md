@@ -2,7 +2,7 @@
 title: Containers
 description: 
 published: true
-date: 2026-08-26T03:13:21.109Z
+date: 2026-08-26T03:15:19.793Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-26T03:13:21.109Z
@@ -12,26 +12,30 @@ dateCreated: 2026-08-26T03:13:21.109Z
 
 This document describes the main applications and data stores that compose Victus.
 
+For readability, the container architecture is shown in two views:
+
+1. **Product Containers** — components involved in the user-facing experience.
+2. **Scientific Evidence Containers** — components responsible for processing and retrieving scientific evidence.
+
+Both diagrams represent the same C4 Container level.
+
 Implementation progress is documented separately in [Current Status](../overview/current-status).
 
-## Container Diagram
+---
+
+## Product Containers
 
 ```mermaid
 graph LR
     User[User]
-    Papers[Scientific Literature]
-    Models[AI Model Providers]
-
     Web[Web Application<br/>victus-fullstack]
     Agent[Agent Service<br/>victus-agent]
     RAG[Evidence Retrieval<br/>victus-rag]
-    Processing[Scientific Processing<br/>victus-processing]
-
     DB[(PostgreSQL)]
-    Vector[(Vector Database)]
-    Storage[(Object Storage)]
+    Models[AI Model Providers]
 
-    User -->|Chat and structured views| Web
+    User -->|Uses| Web
+
     Web -->|Requests| Agent
     Agent -->|Responses| Web
 
@@ -40,72 +44,99 @@ graph LR
 
     Agent -->|Evidence queries| RAG
     RAG -->|Relevant evidence| Agent
-    RAG -->|Search| Vector
-
-    Papers -->|Scientific papers| Processing
-    Processing -->|Structured artifacts| Storage
-    Storage -->|Published evidence| RAG
-    RAG -->|Indexes evidence| Vector
 
     Agent -->|Model requests| Models
-    Processing -->|Model requests| Models
 ```
 
-## Web Application
+This view represents the main path followed when a user interacts with Victus.
+
+The Web Application provides the interface, while the Agent Service coordinates user context, tools, safety, scientific evidence, and response generation.
+
+---
+
+## Scientific Evidence Containers
+
+```mermaid
+graph LR
+    Papers[Scientific Literature]
+    Processing[Scientific Processing<br/>victus-processing]
+    Storage[(Object Storage)]
+    RAG[Evidence Retrieval<br/>victus-rag]
+    Vector[(Vector Database)]
+    Models[AI Model Providers]
+
+    Papers -->|Scientific papers| Processing
+
+    Processing -->|Model requests| Models
+    Processing -->|Structured artifacts| Storage
+
+    Storage -->|Published evidence| RAG
+
+    RAG -->|Index| Vector
+    Vector -->|Search results| RAG
+```
+
+This view represents how scientific literature is transformed into evidence that can later be retrieved by the Agent Service.
+
+Scientific processing is intentionally separated from retrieval so that evidence generation, publication, indexing, and consumption can evolve independently.
+
+---
+
+## Container Responsibilities
+
+### Web Application
 
 **Repository:** `victus-fullstack`
 
 The user-facing application for Victus.
 
-Its main responsibilities are:
+Responsibilities:
 
 * provide the conversational interface;
 * expose structured views for profile, meals, goals, plans, and progress;
 * send user actions to the Agent Service;
-* present recommendations and relevant evidence.
+* present recommendations and relevant information.
 
-The chat remains the primary interaction model, while structured views make important user information visible and editable.
+The chat is the primary interaction model, complemented by structured interfaces for information that should remain visible and editable.
 
-## Agent Service
+### Agent Service
 
 **Repository:** `victus-agent`
 
-The central orchestration layer of the product.
+The central orchestration layer of Victus.
 
-It is responsible for:
+Responsibilities:
 
-* interpreting user requests;
-* loading relevant user context;
-* applying safety controls;
-* coordinating tools;
-* requesting scientific evidence;
-* managing persistent user events;
-* generating the final response.
+* interpret user requests;
+* load relevant user context;
+* apply safety controls;
+* coordinate tools;
+* request scientific evidence;
+* manage persistent user events;
+* generate responses.
 
-The Agent Service coordinates other capabilities rather than implementing scientific processing or retrieval itself.
+The Agent Service coordinates other capabilities rather than implementing scientific processing or retrieval directly.
 
-## Evidence Retrieval
+### Evidence Retrieval
 
 **Repository:** `victus-rag`
 
 Provides scientific evidence to the Agent Service.
 
-Its responsibilities include:
+Responsibilities:
 
-* indexing published scientific evidence;
-* semantic retrieval;
-* ranking and reranking;
-* returning evidence with the metadata required for traceability.
+* index published scientific evidence;
+* retrieve relevant evidence;
+* rank and rerank results;
+* return evidence with the metadata required for traceability.
 
-Retrieval is kept separate from scientific processing so that evidence generation and evidence consumption can evolve independently.
-
-## Scientific Processing
+### Scientific Processing
 
 **Repository:** `victus-processing`
 
-Transforms scientific papers into structured evidence that can later be indexed by the retrieval system.
+Transforms scientific papers into structured evidence that can later be consumed by the retrieval system.
 
-Its responsibilities include:
+Responsibilities:
 
 * paper ingestion and classification;
 * document parsing;
@@ -114,13 +145,13 @@ Its responsibilities include:
 * artifact validation;
 * publication of final datasets.
 
-Scientific Processing runs independently from the conversational application.
+Scientific Processing runs independently from the user-facing application.
 
-## PostgreSQL
+### PostgreSQL
 
 Stores transactional and application state required by Victus.
 
-This includes information such as:
+This includes data such as:
 
 * user events;
 * derived projections;
@@ -129,35 +160,42 @@ This includes information such as:
 
 Detailed schemas belong to the relevant system or contract documentation.
 
-## Object Storage
+### Object Storage
 
 Stores scientific source material and generated artifacts.
 
-Victus currently uses object storage for:
+Victus uses object storage for:
 
 * original papers;
 * intermediate processing artifacts;
 * final JSONL and Parquet datasets;
 * versioned artifact snapshots.
 
-Backblaze B2 acts as the persistent versioned data lake, with S3-compatible storage also used by the processing infrastructure.
+Backblaze B2 acts as the persistent versioned data lake.
 
-## Vector Database
+### Vector Database
 
-Stores the indexes used by the evidence retrieval system.
+Stores the indexes used by the Evidence Retrieval system.
 
-It allows `victus-rag` to retrieve scientific evidence efficiently from the artifacts produced by `victus-processing`.
+It enables `victus-rag` to efficiently search the scientific evidence produced by `victus-processing`.
+
+---
 
 ## External Dependencies
 
 ### AI Model Providers
 
-External models provide language understanding, reasoning, extraction, and generation capabilities.
+External models provide capabilities such as:
 
-Victus accesses these capabilities through internal abstractions so that the architecture is not tied to a single provider.
+* natural-language understanding;
+* reasoning;
+* structured extraction;
+* response generation.
+
+Victus accesses these providers through internal abstractions rather than coupling the product to a specific model.
 
 ### Scientific Literature
 
 Scientific publications are the source material from which Victus builds its evidence base.
 
-They remain external to the Victus platform until they are ingested by the scientific processing system.
+They remain outside the Victus system boundary until they are ingested by Scientific Processing.
