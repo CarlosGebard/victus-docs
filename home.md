@@ -2,7 +2,7 @@
 title: Index
 description: 
 published: true
-date: 2026-08-26T23:42:39.386Z
+date: 2026-08-26T23:42:54.371Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-26T03:01:28.800Z
@@ -289,4 +289,4 @@ User Context + Scientific Retrieval + Nutrition Tools
 Grounded Personalized Recommendation
 ```
 
-See [Current Status](./current-state) for the current implementation state and near-term priorities.
+See [Current Status](./Current-State) for the current implementation state and near-term priorities.
