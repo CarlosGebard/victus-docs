@@ -1,8 +1,12 @@
 # Victus Docs
 
-`victus-docs` is the documentation control plane for the Victus ecosystem.
+`victus-docs` is the versioned Git backup and documentation control plane for
+the Victus ecosystem.
 
-It exists to give humans and AI agents one stable place to understand system context, shared contracts, architecture decisions, and repository boundaries.
+Wiki.js is the source used to author and publish documentation. It pushes a
+one-way backup to this repository so humans and AI agents can inspect the
+versioned documentation context, shared contracts, architecture decisions, and
+repository boundaries.
 
 ## Start Here
 
@@ -21,6 +25,9 @@ It exists to give humans and AI agents one stable place to understand system con
 - Architecture Decision Records
 - Agent navigation and repository rules
 - Read-only documentation mirrors for ecosystem repositories
+
+Wiki.js owns content changes; this repository is not an alternate authoring
+surface. See the [Wiki.js Git backup runbook](docs/runbooks/wikijs-git-backup.md).
 
 ## What This Repository Does Not Own
 
@@ -46,6 +53,7 @@ Victus documentation uses a hybrid Hub-and-Node convention. Root numbered files 
 | [docs/contracts/artifacts.md](docs/contracts/artifacts.md) | Artifact contract hub |
 | [docs/contracts/repository-documentation-contract.md](docs/contracts/repository-documentation-contract.md) | Repository documentation contract |
 | [docs/adr/index.md](docs/adr/index.md) | Architecture decisions |
+| [docs/runbooks/wikijs-git-backup.md](docs/runbooks/wikijs-git-backup.md) | One-way Wiki.js Git backup operation |
 | [repos/](repos/) | Read-only synchronized repository documentation |
 
 ## Ecosystem Repositories

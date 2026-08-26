@@ -2,7 +2,7 @@
 id: VICTUS-MOC-300-CONTRACTS
 title: Victus Contracts
 status: active
-updated_at: 2026-06-09
+updated_at: 2026-08-25
 owners:
   - architecture
 audience:
@@ -33,7 +33,10 @@ relevant repository.
 `repos/**` is read-only synchronized context, not the source of canonical
 contracts inside `victus-docs`.
 
-Wiki.js is a read-only rendered view, not a source of truth.
+Wiki.js is the authoring source for the rendered documentation, including
+contract documentation. Git receives a one-way versioned backup on the
+`wiki-production` branch and must not be used to import or author Wiki.js
+content.
 
 ## Core Contract Documents
 

@@ -2,7 +2,7 @@
 id: VICTUS-MOC-200-OPERATIONS
 title: Victus Operations
 status: active
-updated_at: 2026-05-27
+updated_at: 2026-08-25
 owners:
   - architecture
 audience:
@@ -17,6 +17,9 @@ tags:
 # 200 - Operations
 
 This repository is documentation-first. It does not own runtime services, deployment code, or repository-local operational commands.
+
+Wiki.js documentation synchronization is intentionally one-way: Wiki.js writes
+the Git backup; Git never imports documentation back into Wiki.js.
 
 ## Operational Scope
 
@@ -61,3 +64,4 @@ If implementation source or repository-local runbooks need changes, switch to th
 |---|---|
 | [README.md](README.md) | Human-facing repository overview |
 | [AGENTS.md](AGENTS.md) | Agent-facing repository rules |
+| [Wiki.js Git backup runbook](docs/runbooks/wikijs-git-backup.md) | Configure, validate, and recover the one-way Wiki.js backup |

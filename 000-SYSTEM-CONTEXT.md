@@ -2,7 +2,7 @@
 id: VICTUS-MOC-000-SYSTEM-CONTEXT
 title: Victus System Context
 status: active
-updated_at: 2026-06-09
+updated_at: 2026-08-25
 owners:
   - architecture
 audience:
@@ -18,7 +18,9 @@ tags:
 
 Victus is a modular scientific knowledge platform for nutrition and food-related health evidence.
 
-This repository is the documentation control plane for the Victus ecosystem. It owns global architecture, shared contracts, architecture decisions, and AI-agent navigation.
+Wiki.js is the documentation authoring source for the Victus ecosystem. This
+repository stores the versioned Git backup of that content, including global
+architecture, shared contracts, architecture decisions, and AI-agent navigation.
 
 ## Documentation Convention
 
@@ -66,6 +68,18 @@ Victus is organized around:
 | `victus-rag` | Retrieval, vector database integration, API orchestration, prompts, and answers |
 
 Implementation details and source changes belong in the owning repositories.
+
+## Documentation Authority and Backup
+
+Wiki.js is the authoritative place to create and edit Victus documentation.
+It pushes a one-way backup to the dedicated `wiki-production` Git branch in
+this repository. Git changes must not be used to update Wiki.js content.
+
+The Git backup supports recovery and history inspection. It is not a second
+authoring surface and must not be synchronized back into Wiki.js.
+
+The operational procedure is documented in the
+[Wiki.js Git backup runbook](docs/runbooks/wikijs-git-backup.md).
 
 ## Repository Jumps
 

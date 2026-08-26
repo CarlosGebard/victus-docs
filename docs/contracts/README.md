@@ -16,8 +16,8 @@ must not redefine canonical contracts.
 for understanding repository documentation state, but it is not the source of
 canonical contracts.
 
-Wiki.js is a read-only rendered view of this documentation. It is not a source of
-truth for contract definitions, registry data, or subscription ownership.
+Wiki.js is the authoring source for this documentation. Git is a one-way
+versioned backup and must not be used to import or author Wiki.js content.
 
 ## Registry Files
 

@@ -2,7 +2,7 @@
 id: VICTUS-MOC-100-ARCHITECTURE
 title: Victus Architecture
 status: active
-updated_at: 2026-06-09
+updated_at: 2026-08-25
 owners:
   - architecture
 audience:
@@ -43,6 +43,19 @@ Victus prioritizes:
 - low hidden context
 - reproducible behavior
 
+## Documentation Flow
+
+Documentation has one authoring path and one backup path:
+
+```txt
+Wiki.js (authoring authority)
+-> Git target / wiki-production (one-way versioned backup)
+```
+
+Wiki.js owns documentation mutations. The Git target is not imported back into
+Wiki.js, so there is no competing source of truth or Git merge path in the
+publishing architecture.
+
 ## Artifact Flow
 
 ```txt
@@ -69,3 +82,6 @@ Breaking architecture changes require:
 - affected contract update
 - owning repository implementation update
 - migration notes when persisted data or downstream consumers are affected
+
+The documentation authority decision is recorded in
+[VICTUS-ADR-003](docs/adr/VICTUS-ADR-003-wikijs-authoring-and-git-backup.md).
