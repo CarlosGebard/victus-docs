@@ -1,0 +1,76 @@
+# victus-processing
+
+Local paper-processing pipeline for the Victus ecosystem.
+
+Current release baseline: `v1.0.0` (completed 2026-06-13).
+
+This repository turns scientific-paper inputs into metadata, linked PDF artifacts,
+structured PDF-processing artifacts, and canonical evidence outputs. It owns the local
+processing workflow and the `data/` artifact layout used between stages.
+
+[Español](/repos/victus-processing/docs/README.es)
+
+## Quick Start
+
+Prerequisites:
+
+- Python 3.12
+- `uv`
+- API keys for the stages you plan to run
+
+Install and inspect the CLI:
+
+```bash
+uv sync
+uv run victus-processing --help
+```
+
+Create the local data layout:
+
+```bash
+uv run victus-processing data-layout create
+```
+
+Run the main local flow:
+
+```bash
+uv run victus-processing metadata-extraction explore --mode broad-nutrition
+uv run victus-processing bibliography-export generate-bib
+uv run victus-processing pdf-intake link --metadata-id meta:s2:example --pdf data/artifacts/intake/pdfs/example.pdf
+uv run victus-processing pdf-processing run
+uv run victus-processing evidence-extraction run
+```
+
+## Validate
+
+```bash
+uv run pytest tests/test_cli_smoke.py -q
+```
+
+## Documentation
+
+- [System Context](/repos/victus-processing/docs/000-SYSTEM-CONTEXT)
+- [Architecture](/repos/victus-processing/docs/100-ARCHITECTURE)
+- [Contracts](/repos/victus-processing/docs/300-CONTRACTS)
+- [Operations](/repos/victus-processing/docs/200-OPERATIONS)
+- [CLI](/repos/victus-processing/docs/operations/cli)
+- [Runbooks](docs/operations/runbooks/)
+
+## Responsibilities
+
+This repository owns:
+
+- local paper-processing CLI commands;
+- metadata discovery and candidate state;
+- manual PDF intake into canonical artifacts;
+- Docling/LLM PDF processing artifacts;
+- LLM canonical evidence extraction outputs via LiteLLM;
+- local runtime contracts under `data/`.
+
+This repository does not cover:
+
+- analytics products;
+- RAG indexing or vector stores;
+- production deployment infrastructure;
+- external PDF retrieval services;
+- external API availability, billing, or model behavior.

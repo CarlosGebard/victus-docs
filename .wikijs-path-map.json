@@ -1,0 +1,394 @@
+{
+  "000-SYSTEM-CONTEXT.md": {
+    "export_path": "000-SYSTEM-CONTEXT.md",
+    "wikijs_path": "/000-SYSTEM-CONTEXT"
+  },
+  "100-ARCHITECTURE.md": {
+    "export_path": "100-ARCHITECTURE.md",
+    "wikijs_path": "/100-ARCHITECTURE"
+  },
+  "200-OPERATIONS.md": {
+    "export_path": "200-OPERATIONS.md",
+    "wikijs_path": "/200-OPERATIONS"
+  },
+  "300-CONTRACTS.md": {
+    "export_path": "300-CONTRACTS.md",
+    "wikijs_path": "/300-CONTRACTS"
+  },
+  "AGENTS.md": {
+    "export_path": "AGENTS.md",
+    "wikijs_path": "/AGENTS"
+  },
+  "PLANS.md": {
+    "export_path": "PLANS.md",
+    "wikijs_path": "/PLANS"
+  },
+  "README.md": {
+    "export_path": "README.md",
+    "wikijs_path": "/README"
+  },
+  "decisions/README.md": {
+    "export_path": "decisions/README.md",
+    "wikijs_path": "/decisions/README"
+  },
+  "docs/adr/VICTUS-ADR-001-documentation-control-plane.md": {
+    "export_path": "docs/adr/VICTUS-ADR-001-documentation-control-plane.md",
+    "wikijs_path": "/docs/adr/VICTUS-ADR-001-documentation-control-plane"
+  },
+  "docs/adr/VICTUS-ADR-002-hybrid-hub-and-node-documentation.md": {
+    "export_path": "docs/adr/VICTUS-ADR-002-hybrid-hub-and-node-documentation.md",
+    "wikijs_path": "/docs/adr/VICTUS-ADR-002-hybrid-hub-and-node-documentation"
+  },
+  "docs/adr/index.md": {
+    "export_path": "docs/adr/index.md",
+    "wikijs_path": "/docs/adr/index"
+  },
+  "docs/contracts/README.md": {
+    "export_path": "docs/contracts/README.md",
+    "wikijs_path": "/docs/contracts/README"
+  },
+  "docs/contracts/_registry/contract-frontmatter-schema.md": {
+    "export_path": "docs/contracts/_registry/contract-frontmatter-schema.md",
+    "wikijs_path": "/docs/contracts/_registry/contract-frontmatter-schema"
+  },
+  "docs/contracts/_templates/contract-change-proposal-template.md": {
+    "export_path": "docs/contracts/_templates/contract-change-proposal-template.md",
+    "wikijs_path": "/docs/contracts/_templates/contract-change-proposal-template"
+  },
+  "docs/contracts/_templates/contract-template.md": {
+    "export_path": "docs/contracts/_templates/contract-template.md",
+    "wikijs_path": "/docs/contracts/_templates/contract-template"
+  },
+  "docs/contracts/artifacts.md": {
+    "export_path": "docs/contracts/artifacts.md",
+    "wikijs_path": "/docs/contracts/artifacts"
+  },
+  "docs/contracts/governance/ContractChangeProcess.md": {
+    "export_path": "docs/contracts/governance/ContractChangeProcess.md",
+    "wikijs_path": "/docs/contracts/governance/ContractChangeProcess"
+  },
+  "docs/contracts/governance/ContractSubscriptionModel.md": {
+    "export_path": "docs/contracts/governance/ContractSubscriptionModel.md",
+    "wikijs_path": "/docs/contracts/governance/ContractSubscriptionModel"
+  },
+  "docs/contracts/processing/README.md": {
+    "export_path": "docs/contracts/processing/README.md",
+    "wikijs_path": "/docs/contracts/processing/README"
+  },
+  "docs/contracts/processing/artifacts.md": {
+    "export_path": "docs/contracts/processing/artifacts.md",
+    "wikijs_path": "/docs/contracts/processing/artifacts"
+  },
+  "docs/contracts/processing/papers.md": {
+    "export_path": "docs/contracts/processing/papers.md",
+    "wikijs_path": "/docs/contracts/processing/papers"
+  },
+  "docs/contracts/processing/pipeline-runs.md": {
+    "export_path": "docs/contracts/processing/pipeline-runs.md",
+    "wikijs_path": "/docs/contracts/processing/pipeline-runs"
+  },
+  "docs/contracts/processing/processing-errors.md": {
+    "export_path": "docs/contracts/processing/processing-errors.md",
+    "wikijs_path": "/docs/contracts/processing/processing-errors"
+  },
+  "docs/contracts/processing/stage-runs.md": {
+    "export_path": "docs/contracts/processing/stage-runs.md",
+    "wikijs_path": "/docs/contracts/processing/stage-runs"
+  },
+  "docs/contracts/repository-documentation-contract.md": {
+    "export_path": "docs/contracts/repository-documentation-contract.md",
+    "wikijs_path": "/docs/contracts/repository-documentation-contract"
+  },
+  "docs/contracts/scientific/README.md": {
+    "export_path": "docs/contracts/scientific/README.md",
+    "wikijs_path": "/docs/contracts/scientific/README"
+  },
+  "docs/contracts/scientific/artifact-manifest.md": {
+    "export_path": "docs/contracts/scientific/artifact-manifest.md",
+    "wikijs_path": "/docs/contracts/scientific/artifact-manifest"
+  },
+  "docs/contracts/scientific/canonical-evidence.md": {
+    "export_path": "docs/contracts/scientific/canonical-evidence.md",
+    "wikijs_path": "/docs/contracts/scientific/canonical-evidence"
+  },
+  "docs/contracts/scientific/experiment-map.md": {
+    "export_path": "docs/contracts/scientific/experiment-map.md",
+    "wikijs_path": "/docs/contracts/scientific/experiment-map"
+  },
+  "docs/contracts/scientific/paper-classification.md": {
+    "export_path": "docs/contracts/scientific/paper-classification.md",
+    "wikijs_path": "/docs/contracts/scientific/paper-classification"
+  },
+  "docs/contracts/scientific/paper.md": {
+    "export_path": "docs/contracts/scientific/paper.md",
+    "wikijs_path": "/docs/contracts/scientific/paper"
+  },
+  "docs/contracts/scientific/pipeline-event.md": {
+    "export_path": "docs/contracts/scientific/pipeline-event.md",
+    "wikijs_path": "/docs/contracts/scientific/pipeline-event"
+  },
+  "docs/contracts/scientific/pipeline-run.md": {
+    "export_path": "docs/contracts/scientific/pipeline-run.md",
+    "wikijs_path": "/docs/contracts/scientific/pipeline-run"
+  },
+  "docs/contracts/scientific/structured-block.md": {
+    "export_path": "docs/contracts/scientific/structured-block.md",
+    "wikijs_path": "/docs/contracts/scientific/structured-block"
+  },
+  "index.md": {
+    "export_path": "index.md",
+    "wikijs_path": "/index"
+  },
+  "repos/victus-infra/README.md": {
+    "export_path": "repos/victus-infra/README.md",
+    "wikijs_path": "/repos/victus-infra/README"
+  },
+  "repos/victus-infra/docs/000-SYSTEM-CONTEXT.md": {
+    "export_path": "repos/victus-infra/docs/000-SYSTEM-CONTEXT.md",
+    "wikijs_path": "/repos/victus-infra/docs/000-SYSTEM-CONTEXT"
+  },
+  "repos/victus-infra/docs/100-ARCHITECTURE.md": {
+    "export_path": "repos/victus-infra/docs/100-ARCHITECTURE.md",
+    "wikijs_path": "/repos/victus-infra/docs/100-ARCHITECTURE"
+  },
+  "repos/victus-infra/docs/200-OPERATIONS.md": {
+    "export_path": "repos/victus-infra/docs/200-OPERATIONS.md",
+    "wikijs_path": "/repos/victus-infra/docs/200-OPERATIONS"
+  },
+  "repos/victus-infra/docs/300-CONTRACTS.md": {
+    "export_path": "repos/victus-infra/docs/300-CONTRACTS.md",
+    "wikijs_path": "/repos/victus-infra/docs/300-CONTRACTS"
+  },
+  "repos/victus-infra/docs/README.es.md": {
+    "export_path": "repos/victus-infra/docs/README.es.md",
+    "wikijs_path": "/repos/victus-infra/docs/README.es"
+  },
+  "repos/victus-infra/docs/README.md": {
+    "export_path": "repos/victus-infra/docs/README.md",
+    "wikijs_path": "/repos/victus-infra/docs/README"
+  },
+  "repos/victus-infra/docs/architecture/101-NETWORKING.md": {
+    "export_path": "repos/victus-infra/docs/architecture/101-NETWORKING.md",
+    "wikijs_path": "/repos/victus-infra/docs/architecture/101-NETWORKING"
+  },
+  "repos/victus-infra/docs/architecture/102-COMPUTE-RUNTIMES.md": {
+    "export_path": "repos/victus-infra/docs/architecture/102-COMPUTE-RUNTIMES.md",
+    "wikijs_path": "/repos/victus-infra/docs/architecture/102-COMPUTE-RUNTIMES"
+  },
+  "repos/victus-infra/docs/architecture/103-DATA-STORAGE.md": {
+    "export_path": "repos/victus-infra/docs/architecture/103-DATA-STORAGE.md",
+    "wikijs_path": "/repos/victus-infra/docs/architecture/103-DATA-STORAGE"
+  },
+  "repos/victus-infra/docs/architecture/104-OBSERVABILITY.md": {
+    "export_path": "repos/victus-infra/docs/architecture/104-OBSERVABILITY.md",
+    "wikijs_path": "/repos/victus-infra/docs/architecture/104-OBSERVABILITY"
+  },
+  "repos/victus-infra/docs/operations/201-LOCAL-RUNTIME.md": {
+    "export_path": "repos/victus-infra/docs/operations/201-LOCAL-RUNTIME.md",
+    "wikijs_path": "/repos/victus-infra/docs/operations/201-LOCAL-RUNTIME"
+  },
+  "repos/victus-infra/docs/operations/202-DEPLOYMENT.md": {
+    "export_path": "repos/victus-infra/docs/operations/202-DEPLOYMENT.md",
+    "wikijs_path": "/repos/victus-infra/docs/operations/202-DEPLOYMENT"
+  },
+  "repos/victus-infra/docs/operations/203-SECURITY.md": {
+    "export_path": "repos/victus-infra/docs/operations/203-SECURITY.md",
+    "wikijs_path": "/repos/victus-infra/docs/operations/203-SECURITY"
+  },
+  "repos/victus-infra/docs/operations/204-TROUBLESHOOTING.md": {
+    "export_path": "repos/victus-infra/docs/operations/204-TROUBLESHOOTING.md",
+    "wikijs_path": "/repos/victus-infra/docs/operations/204-TROUBLESHOOTING"
+  },
+  "repos/victus-infra/docs/operations/205-ROADMAP.md": {
+    "export_path": "repos/victus-infra/docs/operations/205-ROADMAP.md",
+    "wikijs_path": "/repos/victus-infra/docs/operations/205-ROADMAP"
+  },
+  "repos/victus-processing/README.md": {
+    "export_path": "repos/victus-processing/README.md",
+    "wikijs_path": "/repos/victus-processing/README"
+  },
+  "repos/victus-processing/docs/000-SYSTEM-CONTEXT.md": {
+    "export_path": "repos/victus-processing/docs/000-SYSTEM-CONTEXT.md",
+    "wikijs_path": "/repos/victus-processing/docs/000-SYSTEM-CONTEXT"
+  },
+  "repos/victus-processing/docs/100-ARCHITECTURE.md": {
+    "export_path": "repos/victus-processing/docs/100-ARCHITECTURE.md",
+    "wikijs_path": "/repos/victus-processing/docs/100-ARCHITECTURE"
+  },
+  "repos/victus-processing/docs/200-OPERATIONS.md": {
+    "export_path": "repos/victus-processing/docs/200-OPERATIONS.md",
+    "wikijs_path": "/repos/victus-processing/docs/200-OPERATIONS"
+  },
+  "repos/victus-processing/docs/300-CONTRACTS.md": {
+    "export_path": "repos/victus-processing/docs/300-CONTRACTS.md",
+    "wikijs_path": "/repos/victus-processing/docs/300-CONTRACTS"
+  },
+  "repos/victus-processing/docs/README.es.md": {
+    "export_path": "repos/victus-processing/docs/README.es.md",
+    "wikijs_path": "/repos/victus-processing/docs/README.es"
+  },
+  "repos/victus-processing/docs/adr/001-testing-workspace-per-paper.md": {
+    "export_path": "repos/victus-processing/docs/adr/001-testing-workspace-per-paper.md",
+    "wikijs_path": "/repos/victus-processing/docs/adr/001-testing-workspace-per-paper"
+  },
+  "repos/victus-processing/docs/adr/002-paper-classification-gate.md": {
+    "export_path": "repos/victus-processing/docs/adr/002-paper-classification-gate.md",
+    "wikijs_path": "/repos/victus-processing/docs/adr/002-paper-classification-gate"
+  },
+  "repos/victus-processing/docs/adr/003-simplified-postgresql-state.md": {
+    "export_path": "repos/victus-processing/docs/adr/003-simplified-postgresql-state.md",
+    "wikijs_path": "/repos/victus-processing/docs/adr/003-simplified-postgresql-state"
+  },
+  "repos/victus-processing/docs/contracts/fundamental/processing/README.md": {
+    "export_path": "repos/victus-processing/docs/contracts/fundamental/processing/README.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/fundamental/processing/README"
+  },
+  "repos/victus-processing/docs/contracts/fundamental/scientific/artifact-manifest.md": {
+    "export_path": "repos/victus-processing/docs/contracts/fundamental/scientific/artifact-manifest.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/fundamental/scientific/artifact-manifest"
+  },
+  "repos/victus-processing/docs/contracts/fundamental/scientific/artifact-registry.md": {
+    "export_path": "repos/victus-processing/docs/contracts/fundamental/scientific/artifact-registry.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/fundamental/scientific/artifact-registry"
+  },
+  "repos/victus-processing/docs/contracts/fundamental/scientific/canonical-evidence.md": {
+    "export_path": "repos/victus-processing/docs/contracts/fundamental/scientific/canonical-evidence.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/fundamental/scientific/canonical-evidence"
+  },
+  "repos/victus-processing/docs/contracts/fundamental/scientific/experiment-map.md": {
+    "export_path": "repos/victus-processing/docs/contracts/fundamental/scientific/experiment-map.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/fundamental/scientific/experiment-map"
+  },
+  "repos/victus-processing/docs/contracts/fundamental/scientific/paper-classification.md": {
+    "export_path": "repos/victus-processing/docs/contracts/fundamental/scientific/paper-classification.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/fundamental/scientific/paper-classification"
+  },
+  "repos/victus-processing/docs/contracts/fundamental/scientific/paper-processing-state.md": {
+    "export_path": "repos/victus-processing/docs/contracts/fundamental/scientific/paper-processing-state.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/fundamental/scientific/paper-processing-state"
+  },
+  "repos/victus-processing/docs/contracts/fundamental/scientific/paper-stage-state.md": {
+    "export_path": "repos/victus-processing/docs/contracts/fundamental/scientific/paper-stage-state.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/fundamental/scientific/paper-stage-state"
+  },
+  "repos/victus-processing/docs/contracts/fundamental/scientific/paper.md": {
+    "export_path": "repos/victus-processing/docs/contracts/fundamental/scientific/paper.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/fundamental/scientific/paper"
+  },
+  "repos/victus-processing/docs/contracts/fundamental/scientific/pipeline-event.md": {
+    "export_path": "repos/victus-processing/docs/contracts/fundamental/scientific/pipeline-event.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/fundamental/scientific/pipeline-event"
+  },
+  "repos/victus-processing/docs/contracts/fundamental/scientific/pipeline-run.md": {
+    "export_path": "repos/victus-processing/docs/contracts/fundamental/scientific/pipeline-run.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/fundamental/scientific/pipeline-run"
+  },
+  "repos/victus-processing/docs/contracts/fundamental/scientific/structured-block.md": {
+    "export_path": "repos/victus-processing/docs/contracts/fundamental/scientific/structured-block.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/fundamental/scientific/structured-block"
+  },
+  "repos/victus-processing/docs/contracts/local/artifact-inventory.md": {
+    "export_path": "repos/victus-processing/docs/contracts/local/artifact-inventory.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/local/artifact-inventory"
+  },
+  "repos/victus-processing/docs/contracts/local/artifact-schemas.md": {
+    "export_path": "repos/victus-processing/docs/contracts/local/artifact-schemas.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/local/artifact-schemas"
+  },
+  "repos/victus-processing/docs/contracts/local/data-layout.md": {
+    "export_path": "repos/victus-processing/docs/contracts/local/data-layout.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/local/data-layout"
+  },
+  "repos/victus-processing/docs/contracts/local/paper-pipeline-state.md": {
+    "export_path": "repos/victus-processing/docs/contracts/local/paper-pipeline-state.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/local/paper-pipeline-state"
+  },
+  "repos/victus-processing/docs/contracts/local/stage-handoffs.md": {
+    "export_path": "repos/victus-processing/docs/contracts/local/stage-handoffs.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/local/stage-handoffs"
+  },
+  "repos/victus-processing/docs/contracts/postgres-schema.mermaid.md": {
+    "export_path": "repos/victus-processing/docs/contracts/postgres-schema.mermaid.md",
+    "wikijs_path": "/repos/victus-processing/docs/contracts/postgres-schema.mermaid"
+  },
+  "repos/victus-processing/docs/operations/cli.md": {
+    "export_path": "repos/victus-processing/docs/operations/cli.md",
+    "wikijs_path": "/repos/victus-processing/docs/operations/cli"
+  },
+  "repos/victus-processing/docs/operations/contracts-sync.md": {
+    "export_path": "repos/victus-processing/docs/operations/contracts-sync.md",
+    "wikijs_path": "/repos/victus-processing/docs/operations/contracts-sync"
+  },
+  "repos/victus-processing/docs/operations/pdf-processing.md": {
+    "export_path": "repos/victus-processing/docs/operations/pdf-processing.md",
+    "wikijs_path": "/repos/victus-processing/docs/operations/pdf-processing"
+  },
+  "repos/victus-processing/docs/operations/pipeline/bibliography-export.md": {
+    "export_path": "repos/victus-processing/docs/operations/pipeline/bibliography-export.md",
+    "wikijs_path": "/repos/victus-processing/docs/operations/pipeline/bibliography-export"
+  },
+  "repos/victus-processing/docs/operations/pipeline/evidence-extraction.md": {
+    "export_path": "repos/victus-processing/docs/operations/pipeline/evidence-extraction.md",
+    "wikijs_path": "/repos/victus-processing/docs/operations/pipeline/evidence-extraction"
+  },
+  "repos/victus-processing/docs/operations/pipeline/metadata-extraction.md": {
+    "export_path": "repos/victus-processing/docs/operations/pipeline/metadata-extraction.md",
+    "wikijs_path": "/repos/victus-processing/docs/operations/pipeline/metadata-extraction"
+  },
+  "repos/victus-processing/docs/operations/pipeline/pdf-intake.md": {
+    "export_path": "repos/victus-processing/docs/operations/pipeline/pdf-intake.md",
+    "wikijs_path": "/repos/victus-processing/docs/operations/pipeline/pdf-intake"
+  },
+  "repos/victus-processing/docs/operations/pipeline/pdf-processing.md": {
+    "export_path": "repos/victus-processing/docs/operations/pipeline/pdf-processing.md",
+    "wikijs_path": "/repos/victus-processing/docs/operations/pipeline/pdf-processing"
+  },
+  "repos/victus-processing/docs/operations/pipeline/testing-pipeline.md": {
+    "export_path": "repos/victus-processing/docs/operations/pipeline/testing-pipeline.md",
+    "wikijs_path": "/repos/victus-processing/docs/operations/pipeline/testing-pipeline"
+  },
+  "repos/victus-processing/docs/operations/runbooks/data-layout-migration.md": {
+    "export_path": "repos/victus-processing/docs/operations/runbooks/data-layout-migration.md",
+    "wikijs_path": "/repos/victus-processing/docs/operations/runbooks/data-layout-migration"
+  },
+  "repos/victus-processing/docs/operations/runbooks/github-container-registry.md": {
+    "export_path": "repos/victus-processing/docs/operations/runbooks/github-container-registry.md",
+    "wikijs_path": "/repos/victus-processing/docs/operations/runbooks/github-container-registry"
+  },
+  "repos/victus-processing/docs/operations/runbooks/postgres-pipeline-records.md": {
+    "export_path": "repos/victus-processing/docs/operations/runbooks/postgres-pipeline-records.md",
+    "wikijs_path": "/repos/victus-processing/docs/operations/runbooks/postgres-pipeline-records"
+  },
+  "repos/victus-rag/README.md": {
+    "export_path": "repos/victus-rag/README.md",
+    "wikijs_path": "/repos/victus-rag/README"
+  },
+  "repos/victus-rag/docs/000-SYSTEM-CONTEXT.md": {
+    "export_path": "repos/victus-rag/docs/000-SYSTEM-CONTEXT.md",
+    "wikijs_path": "/repos/victus-rag/docs/000-SYSTEM-CONTEXT"
+  },
+  "repos/victus-rag/docs/100-ARCHITECTURE.md": {
+    "export_path": "repos/victus-rag/docs/100-ARCHITECTURE.md",
+    "wikijs_path": "/repos/victus-rag/docs/100-ARCHITECTURE"
+  },
+  "repos/victus-rag/docs/200-OPERATIONS.md": {
+    "export_path": "repos/victus-rag/docs/200-OPERATIONS.md",
+    "wikijs_path": "/repos/victus-rag/docs/200-OPERATIONS"
+  },
+  "repos/victus-rag/docs/300-CONTRACTS.md": {
+    "export_path": "repos/victus-rag/docs/300-CONTRACTS.md",
+    "wikijs_path": "/repos/victus-rag/docs/300-CONTRACTS"
+  },
+  "repos/victus-rag/docs/decisions/0001-otlp-retrieval-audit-telemetry.md": {
+    "export_path": "repos/victus-rag/docs/decisions/0001-otlp-retrieval-audit-telemetry.md",
+    "wikijs_path": "/repos/victus-rag/docs/decisions/0001-otlp-retrieval-audit-telemetry"
+  },
+  "repos/victus-rag/docs/localization/README.es.md": {
+    "export_path": "repos/victus-rag/docs/localization/README.es.md",
+    "wikijs_path": "/repos/victus-rag/docs/localization/README.es"
+  },
+  "repos/victus-rag/docs/runbooks/phoenix-telemetry.md": {
+    "export_path": "repos/victus-rag/docs/runbooks/phoenix-telemetry.md",
+    "wikijs_path": "/repos/victus-rag/docs/runbooks/phoenix-telemetry"
+  }
+}
