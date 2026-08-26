@@ -1,3 +1,13 @@
+---
+title: index
+description: 
+published: true
+date: 2026-08-26T02:34:26.613Z
+tags: 
+editor: markdown
+dateCreated: 2026-08-26T02:34:26.613Z
+---
+
 # Victus
 
 Victus is a personalized health and nutrition agent designed to provide practical recommendations for diet and healthy living.
@@ -154,4 +164,3 @@ Victus documentation follows a few simple rules:
 * Keep documentation close to the code and update it as the system evolves.
 
 The architecture documentation follows the **C4 model**, moving from system context to containers and, only where useful, individual components.
-
