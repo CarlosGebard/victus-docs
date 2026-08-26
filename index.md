@@ -1,8 +1,8 @@
 ---
-title: index
+title: Index
 description: 
 published: true
-date: 2026-08-26T02:46:33.260Z
+date: 2026-08-26T02:46:59.846Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-26T02:34:26.613Z
