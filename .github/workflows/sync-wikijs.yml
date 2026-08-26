@@ -89,7 +89,7 @@ jobs:
             query: "mutation ExecuteStorageAction($targetKey: String!, $handler: String!) { storage { executeAction(targetKey: $targetKey, handler: $handler) { responseResult { succeeded errorCode slug message } } } }",
             variables: {
               targetKey: $targetKey,
-              handler: "import"
+              handler: "importAll"
             }
           }')
 
@@ -97,4 +97,7 @@ jobs:
             --request POST "$WIKIJS_GRAPHQL_URL" \
             --header "Authorization: Bearer $WIKIJS_API_TOKEN" \
             --header "Content-Type: application/json" \
-            --data "$payload"
+            --data "$payload" | jq -e '
+            .data.storage.executeAction.responseResult
+            | select(.succeeded == true)
+          '
