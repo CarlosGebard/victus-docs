@@ -2,7 +2,7 @@
 title: Scientific-Processing
 description: 
 published: true
-date: 2026-08-26T03:37:46.217Z
+date: 2026-08-26T03:49:34.636Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-26T03:37:46.217Z
@@ -128,6 +128,87 @@ It is designed for downstream retrieval, ranking, synthesis, and reasoning witho
 | **CanonicalEvidence**   | Normalized and traceable scientific result.                   |
 
 Detailed schemas and invariants are maintained in the [Scientific Contracts](../contracts/scientific/).
+
+
+## Persistence Model
+
+PostgreSQL stores the durable scientific outputs produced by the processing pipeline together with the state required to track paper processing.
+
+The persistence model separates **scientific data** from **pipeline execution state**.
+
+### Scientific Data
+
+```mermaid
+graph LR
+    Paper[Structured Paper]
+    Blocks[Structured Blocks]
+    Classification[Paper Classification]
+    Map[Experiment Map]
+    Evidence[Canonical Evidence]
+
+    Paper -->|contains| Blocks
+    Paper -->|classified as| Classification
+    Paper -->|mapped by| Map
+    Paper -->|produces| Evidence
+
+    Blocks -->|grounds| Evidence
+    Map -->|scopes| Evidence
+```
+
+The main scientific relationship is:
+
+```text
+Paper
+  ↓
+Structured Blocks
+  ↓
+Experiment Map
+  ↓
+Canonical Evidence
+```
+
+`PaperClassification` acts as a gate that determines whether a processed paper should continue through the primary evidence extraction path.
+
+Canonical Evidence remains traceable to both the experiment scope and the Structured Blocks that support it.
+
+The most relevant identities are:
+
+| Object             | Identity                |
+| ------------------ | ----------------------- |
+| Structured Paper   | `paper_id`              |
+| Structured Block   | `block_id`              |
+| Experiment Map     | `experiment_map_id`     |
+| Canonical Evidence | `canonical_evidence_id` |
+
+Detailed fields belong to the scientific contracts and physical database schema rather than this architectural view.
+
+### Processing State
+
+```mermaid
+graph LR
+    Run[Pipeline Stage Attempt]
+    PaperState[Paper Processing State]
+    Outputs[Scientific Outputs]
+
+    Run -->|updates| PaperState
+    Outputs -->|contribute to| PaperState
+    PaperState -->|determines| Next[Next Processing Stage]
+```
+
+The processing state has two different responsibilities:
+
+* **Pipeline stage state** records individual execution attempts, including stage, status, run, and errors.
+* **Paper processing state** provides a derived view of the overall progress of a paper through the pipeline.
+
+Keeping execution state separate from scientific outputs prevents operational concerns from becoming part of the scientific domain model.
+
+### Source of Truth
+
+These diagrams describe the persistence model conceptually and intentionally omit implementation details.
+
+The PostgreSQL schema and migrations maintained by `victus-processing` are the authoritative source for physical tables, columns, constraints, indexes, and data types.
+
+
 
 ## State & Traceability
 
