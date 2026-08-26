@@ -2,101 +2,79 @@
 title: index
 description: 
 published: true
-date: 2026-08-26T02:34:26.613Z
+date: 2026-08-26T02:46:33.260Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-26T02:34:26.613Z
 ---
 
-# Victus
+## What is Victus?
 
-Victus is a personalized health and nutrition agent designed to provide practical recommendations for diet and healthy living.
+Victus is a personalized health and nutrition agent designed to help users improve their diet and healthy living habits.
 
-Its recommendations combine three main sources of information:
+It combines scientific evidence, user-specific context, and specialized tools to generate recommendations adapted to each user's goals and profile.
 
-* **Scientific evidence**, extracted and retrieved from research papers.
-* **User profiles**, containing the context required to personalize recommendations.
-* **Specialized tools**, used to analyze, plan, and optimize diets and health-related decisions.
+The purpose of Victus is not simply to answer health-related questions, but to turn reliable scientific knowledge and personal information into practical recommendations.
 
-The goal of Victus is to bridge the gap between scientific knowledge and actionable, personalized recommendations.
+## Core Capabilities
 
----
+Victus is built around four core capabilities:
 
-## How Victus Works
+* **Personalized recommendations** based on the user's profile, goals, preferences, and relevant history.
+* **Scientific evidence retrieval** to support recommendations with information extracted from research papers.
+* **Specialized tools** for tasks such as dietary analysis, planning, and optimization.
+* **Conversational interaction** through an agent capable of coordinating evidence, user context, and tools.
 
-At a high level, Victus combines a conversational agent with a scientific evidence system and a set of specialized tools.
+Safety mechanisms complement these capabilities when a request requires additional safeguards.
+
+## How It Works
+
+At a high level, Victus combines three sources of context before producing a recommendation.
 
 ```mermaid
-flowchart TD
-    Papers[Scientific Papers]
-    Evidence[Scientific Evidence]
+flowchart LR
     User[User]
     Profile[User Profile]
+    Evidence[Scientific Evidence]
     Agent[Victus Agent]
     Tools[Specialized Tools]
     Recommendation[Personalized Recommendation]
 
-    Papers --> Evidence
-    Evidence --> Agent
     User --> Agent
     Profile --> Agent
-    Agent --> Tools
-    Tools --> Recommendation
+    Evidence --> Agent
+    Agent <--> Tools
+    Agent --> Recommendation
 ```
 
-When a user asks a question or requests a recommendation, Victus can:
+The **Victus Agent** acts as the coordinator.
 
-1. Understand the user's request and relevant personal context.
-2. Retrieve scientific evidence related to the question.
-3. Use specialized tools when calculations, planning, or optimization are required.
-4. Generate a recommendation adapted to the user's profile.
-5. Preserve relevant information to support future interactions.
+Depending on the request, it can use information from the user's profile, retrieve relevant scientific evidence, invoke specialized tools, or combine these capabilities before generating a response.
 
-The scientific evidence system exists to make recommendations traceable to research rather than relying exclusively on the model's internal knowledge.
+Scientific papers are processed separately into structured evidence so they can be retrieved efficiently when the agent needs to support a recommendation.
 
----
+## System Boundaries
 
-## Core Capabilities
+Victus is responsible for:
 
-### Personalized Health Agent
+* understanding health and nutrition requests;
+* maintaining relevant user context;
+* retrieving scientific evidence;
+* using specialized health and diet tools;
+* generating personalized recommendations.
 
-The Victus Agent is the primary interface with the user. It coordinates reasoning, user context, scientific evidence, safety checks, and tool execution.
+Victus is not intended to replace medical professionals or function as a general-purpose scientific search engine.
 
-### Scientific Evidence
+Its scientific processing, retrieval, memory, safety, and infrastructure systems exist to support the primary product: the personalized health and nutrition agent.
 
-Victus processes scientific papers into structured evidence that can later be searched and used when answering health and nutrition questions.
+## Current State
 
-### Diet Optimization
+Victus is an actively developed personal project.
 
-Victus can use specialized tools to analyze and optimize dietary decisions according to the user's goals, constraints, and profile.
+Some capabilities are already implemented while others remain partial or planned. The documentation describes the system according to its actual implementation state rather than presenting planned functionality as complete.
 
-### User Profiles
+See [Current Status](./current-status) for the current implementation status of each major capability.
 
-User-specific information provides the context required to generate recommendations that are more relevant than generic health advice.
-
-### Safety
-
-Requests and actions can pass through safety mechanisms before recommendations or tools are executed.
-
----
-
-## System Overview
-
-Victus is composed of several cooperating subsystems.
-
-| System                    | Responsibility                                                   |
-| ------------------------- | ---------------------------------------------------------------- |
-| **Victus Agent**          | Interacts with the user and orchestrates the system.             |
-| **Scientific Processing** | Converts research papers into structured scientific evidence.    |
-| **Retrieval**             | Finds relevant evidence for a user's question.                   |
-| **Tools**                 | Perform specialized calculations, analysis, and optimization.    |
-| **User Profile & Memory** | Maintain relevant context about the user.                        |
-| **Safety**                | Detects and routes requests that require additional safeguards.  |
-| **Infrastructure**        | Provides storage, databases, execution, and supporting services. |
-
-For the complete architectural view, see [Architecture](../02-architecture/system-context).
-
----
 
 ## Documentation
 
@@ -134,22 +112,6 @@ Architecture Decision Records describing important technical decisions and their
 
 Current implementation state, known gaps, technical debt, and roadmap.
 
----
-
-## Current State
-
-Victus is under active development.
-
-The documentation distinguishes explicitly between functionality that is:
-
-* **Implemented**
-* **Partial**
-* **Planned**
-* **Deprecated**
-
-See [Current State](./08-project-status/current-state) for the authoritative view of what exists today and what remains to be implemented.
-
----
 
 ## Documentation Principles
 
