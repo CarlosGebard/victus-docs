@@ -2,7 +2,7 @@
 title: Index
 description: 
 published: true
-date: 2026-08-26T23:42:54.371Z
+date: 2026-08-26T23:45:16.416Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-26T03:01:28.800Z
@@ -119,7 +119,7 @@ graph LR
     Fullstack -. may use .-> Infra
 ```
 
-The exact degree of integration differs between subsystems and is documented in [Current Status](./current-status).
+The exact degree of integration differs between subsystems and is documented in [Current Status](./Current-State).
 
 ## Main Systems
 
@@ -131,8 +131,7 @@ It owns model coordination, safety flow, tool execution, clarification and confi
 
 The current active public tool capability is focused on meal and beverage capture.
 
-[Read Agent documentation](./systems/agent)
-
+- [Agent](./Systems/Agent)
 ### Scientific Processing
 
 The scientific evidence pipeline.
@@ -141,15 +140,14 @@ It transforms research papers into structured scientific artifacts suitable for 
 
 Processing is one of the most mature technical subsystems in Victus.
 
-[Read Scientific Processing documentation](./systems/scientific-processing)
-
+- [Scientific Processing](./Systems/Scientific-Processing)
 ### Scientific Retrieval
 
 The subsystem responsible for indexing, retrieving, ranking, and evaluating scientific evidence.
 
 The current `victus-rag` implementation is primarily a CLI-first retrieval and evaluation laboratory. Product-serving integration is still under development.
 
-[Read Retrieval documentation](./systems/retrieval)
+- [Retrieval](./Systems/Retrieval)
 
 ### Victus Fullstack
 
@@ -157,15 +155,14 @@ The user-facing web product.
 
 It currently includes a React frontend, Hono backend, PostgreSQL persistence, authentication, conversation history, meal logging, FoodB catalog access, profile views, biometrics views, and an HTTP gateway to Victus Agent.
 
-[Read Fullstack documentation](./systems/fullstack)
-
+- [Fullstack](./Systems/FullStack)
 ### Shared Infrastructure
 
 The shared runtime platform for Victus.
 
 It defines Docker Compose stacks, VPS deployment, networking, PostgreSQL, Redis, SeaweedFS, LiteLLM, Langfuse, observability foundations, secrets management, and Wiki.js hosting.
 
-[Read Infrastructure documentation](./systems/infrastructure)
+- [Infrastructure](./Systems/Infrastructure)
 
 ## Architecture Documentation
 
@@ -175,29 +172,29 @@ Victus uses a lightweight C4-inspired documentation structure.
 
 Explains Victus as a complete system, its users, and its external boundaries.
 
-[System Context](./architecture/system-context)
+[System Context](./Architecture/System-Context)
 
 ### Containers
 
 Describes the major Victus subsystems and how they relate.
 
-[Containers](./architecture/containers)
+[Containers](./Architecture/Containers)
 
 ### Data Flow
 
 Explains how information moves between the major systems.
 
-[Data Flow](./architecture/data-flow)
+[Data Flow](./Architecture/Data-flow)
 
 ### Systems
 
 Each major subsystem has one focused conceptual page:
 
-- [Agent](./systems/agent)
-- [Scientific Processing](./systems/scientific-processing)
-- [Retrieval](./systems/retrieval)
-- [Fullstack](./systems/fullstack)
-- [Infrastructure](./systems/infrastructure)
+- [Agent](./Systems/Agent)
+- [Scientific Processing](./Systems/Scientific-Processing)
+- [Retrieval](./Systems/Retrieval)
+- [Fullstack](./Systems/FullStack)
+- [Infrastructure](./Systems/Infrastructure)
 
 Implementation-specific details remain in the corresponding repositories.
 
